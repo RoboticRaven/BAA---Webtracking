@@ -1,0 +1,1993 @@
+\documentclass[10.5pt, a4paper]{article}
+% compile with pdflatex deckball_bachelorarbeit.tex
+\usepackage{amssymb} 
+\usepackage{color}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=3.35cm,right=2.12cm,top=3.75cm,bottom=2.88cm,%
+            footskip=.25in]{geometry}
+
+% bibliography management
+\usepackage[nswissgerman]{babel}
+\addto\captionsnswissgerman{\renewcommand\figurename{Abb.}}
+% quoting
+\usepackage{csquotes}
+% captions
+\usepackage{caption}
+\captionsetup{format=hang}
+
+% better url formatting
+\usepackage{url}
+\usepackage[
+backend=biber,
+style=authoryear,
+citestyle=apa,
+maxnames=2
+]{biblatex}
+\addbibresource{baa-suzuki.bib} %Import the bibliography file
+% redefine cite command to be in line with apa guidelines
+\DefineBibliographyStrings{german}{%
+  andothers = {et al.},
+}
+\selectlanguage{ngerman}
+% disable justification on references
+\renewcommand*{\bibfont}{\raggedright}
+
+% make pagenumbers great again
+\usepackage{fancyhdr}
+\lhead{} \chead{} \rhead{\thepage} %sets header left center right
+\lfoot{} \cfoot{} \rfoot{} %sets footer left center right
+\renewcommand{\headrulewidth}{0.0pt} %optional horizontal rule thickness
+\renewcommand{\footrulewidth}{0.0pt} %optional horizontal rule thickness
+\pagestyle{fancy}
+
+% more indentation levels
+\usepackage{titlesec}
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\@addtoreset{subsubsubsection}{section}
+\@addtoreset{subsubsubsection}{subsection}
+\@addtoreset{paragraph}{subsubsubsection}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {0.0001pt \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% glossaries
+\usepackage[acronym]{glossaries}
+\usepackage{glossary-mcols}
+\makeglossaries
+\loadglsentries{glossary.tex}
+% fix space above printed glossary (empty title)
+\renewcommand{\glossarysection}[2][]{}
+
+% graphics
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{float}
+
+% importable pdf pages
+\usepackage{pdfpages}
+
+% multicolumn layout
+\usepackage{multicol}
+
+% landscape perspective
+\usepackage{pdflscape}
+
+% tables
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage[labelfont=bf]{caption}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% fix urls from overflowing the bibliography layout
+\usepackage{xurl}
+
+% hyperrefs
+\usepackage{hyperref}
+
+
+% world flags
+\usepackage{pkg/worldflags}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% multiline cells
+\usepackage{makecell}
+
+% arrows
+\usepackage{textcomp}
+
+% TEMPORARY FOR TESTING----------------------------
+% font configuration
+\usepackage[final]{microtype}
+%\usepackage{fontspec}
+%\setmainfont[Numbers={OldStyle, Proportional},Ligatures=TeX]{Brill}
+% \usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+% -------------------------------------------------
+
+\begin{document}
+%\onecolumn
+\pagenumbering{gobble}
+% first page
+\includepdf{./pdf/splash.pdf}
+\newpage
+
+\noindent
+\fontsize{12}{14}
+\textbf{Bachelorarbeit an der Hochschule Luzern -- Informatik} \\ \vspace*{0.6cm}
+
+\fontsize{10.5}{12}
+\noindent
+\textbf{Titel:} \newline \newline
+\textbf{Studentin/Student:} \newline \newline
+\textbf{Studiengang:} BSc Informatik oder Wirtschaftsinformatik \newline \newline
+\textbf{Jahr:} \newline \newline
+\textbf{Betreuungsperson:} \newline \newline
+\textbf{Expertin/Experte:} \newline \newline
+\textbf{Auftraggeberin/Auftraggeber:} \newline \newline \newline
+\textbf{Codierung / Klassifizierung der Arbeit:}\\
+$\square$ \"Offentlich (Normalfall) \\
+$\square$ Vertraulich\\
+
+
+%%% you can use \boxtimes for filling a cross inside the square
+%%% e.g., $\boxtimes$ A: Einsicht 	(Normalfall) 
+
+
+\paragraph*{\textbf{Eidesstattliche Erkl\"arung}}
+Ich erkl\"are hiermit, dass ich die vorliegende Arbeit selbst\"andig und ohne unerlaubte fremde Hilfe angefertigt habe, alle verwendeten Quellen, Literatur und andere Hilfsmittel angegeben habe, w\"ortlich oder inhaltlich entnommene Stellen als solche kenntlich gemacht habe, das Vertraulichkeitsinteresse des Auftraggebers wahren und die Urheberrechtsbestimmungen der Hochschule Luzern respektieren werde. \newline \newline 
+Ort / Datum, Unterschrift	\underline{\hspace*{4cm}} \newline \newline
+
+
+\newpage
+\noindent
+\textbf{Abgabe der Arbeit auf der Portfolio Datenbank:}\\
+Best\"atigungsvisum Studentin/Student\\
+Ich best\"atige, dass ich die Bachelorarbeit korrekt gem\"ass Merkblatt auf der Portfolio Datenbank abgelegt habe. Die Verantwortlichkeit sowie die Berechtigungen habe ich abgegeben, so dass ich keine \"Anderungen mehr vornehmen kann oder weitere Dateien hochladen kann. \newline \newline 
+Ort / Datum, Unterschrift	\underline{\hspace*{4cm}} \newline \newline \newline
+\textbf{Verdankung}\\
+{\color{red}xxx} \newline \newline \newline
+\noindent
+{\textbf{Ausschliesslich bei Abgabe in gedruckter Form: \\
+Eingangsvisum durch das Sekretariat auszuf\"ullen}} \newline \newline
+Rotkreuz, den	\underline{\hspace*{4cm}} \hspace*{1cm}	Visum:	\underline{\hspace*{4cm}} \vspace*{10cm}
+
+
+
+
+
+
+
+
+
+
+
+\noindent
+{\textbf{Hinweis}}: Die Bachelorarbeit wurde von keinem Dozierenden nachbearbeitet. Ver\"offentlichungen (auch auszugsweise) sind ohne das Einverst\"andnis der Studiengangleitung der Hochschule Luzern -- Informatik nicht erlaubt. \newline \newline
+Copyright \textcopyright\ {\color{red}2019} Hochschule Luzern -- Informatik \newline \newline
+Alle Rechte vorbehalten. Kein Teil dieser Arbeit darf ohne die schriftliche Genehmigung der Studiengangleitung der Hochschule Luzern -- Informatik in irgendeiner Form reproduziert oder in eine von Maschinen verwendete Sprache \"ubertragen werden.
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% BACHELOR WORK CONTENT BEGINS HERE
+% ------------------------------------------------------------------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% ABSTRACT
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\section*{Abstract} 
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\section*{Inhaltsverzeichnis}
+% NEW VERSION OF TOC WITH FIXED FORMATTING
+\makeatletter
+%\begin{multicols*}{2}
+  \@starttoc{toc}
+%\end{multicols*}
+\makeatother
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% LIST OF FIGURES & TABLES
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\begin{multicols*}{2}
+  \listoffigures
+\end{multicols*}
+\newpage
+\begin{multicols*}{2}
+  \listoftables
+\end{multicols*}
+\newpage
+% PAGE NUMBERING STARTS HERE
+\pagenumbering{arabic}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% PROBLEM / QUESTION
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\section{Einführung} \label{sec:intro}
+\begin{multicols*}{2}
+
+% quote Metcalfe
+\textit{Almost all of the many predictions now being made about 1996 hinge on the Internet’s continuing exponential growth. But I predict the Internet, which only just recently got this section here in InfoWorld, will soon go spectacularly supernova and in 1996 catastrophically collapse.} \begin{flushright} \vspace{-5mm} \cite{Metcalfe1995} \end{flushright}
+
+Unabhängig davon wie man es dreht und wendet, kritischen Stimmen zum Trotz, hat sich das Internet durchgesetzt; zur Veranschaulichung folgen einige Indikatoren dieses Erfolgs:
+\begin{description}
+  \item [Nutzungszahlen] \ \vspace{0mm} \\ 
+    Die internationale Fernmeldeunion (\acrshort{itu}) erhebt Daten über den Anteil der Weltbevölkerung, welcher das Internet nutzt. Im Intervall zwischen 1997 bis 2017 ist darin ein jährlicher Zuwachs der Zugänge für etwa 2-3\% der Weltbevölkerung beobachtbar. Im Jahr 1997 hatten gemäss der \acrshort{itu} lediglich 2\% der Weltbevölkerung Zugang zum Internet, bis 2017 ist dieser berichtete Wert hingegen auf 48\% angestiegen. (siehe Anhang Abb. \ref{appendix:IUperInhabitant}) Gemäss Zahlen aus der Privatwirtschaft liegt diese Quote in 2021 bei 65\% \parencite[]{DomoInc.2021}. 
+  \item[Geographische Ausbreitung] \ \vspace{0mm} \\
+    Die Granularität der Daten, welche die \acrshort{itu} erhebt und publiziert, erlaubt mitunter die Entwicklung der Bevölkerungsquote mit Zugang zum Internet für einzelne Mitgliedstaaten nachzuvollziehen. \parencite[]{InternationalTelecommunicationUnion} Darin zeigt sich, dass das Internet - wenngleich in unterschiedlicher Intensität - alle Mitgliedstaaten penetriert hat. (siehe Anhang Abb. \ref{appendix:IUperCountry}) 
+  \item[Zunahme netzwerkfähiger Geräte] \ \vspace{0mm} \\
+    Die Anzahl netzwerkfähiger Geräte, zuerst angetrieben durch die Verbreitung von Computern, später auch Notebooks, Tablets, Smartphones, Smart-TVs und IoT-Geräte, hat sich rasant entwickelt. Schätzwerte aus der Industrie rechnen mit einer weltweit durchschnittlichen Anzahl netzwerkfähiger Geräte pro Kopf von 3.6 bis zum Jahr 2023 - Spitzenreiter in dieser Projektion bildet Nordamerika mit einer Rate von 13.4 Geräten/Kopf in 2023. \parencite[S.7]{Cisco2020}
+\end{description}
+
+Dieser Siegeszug des Internets hat das Leben zahlloser Menschen beinflusst: vieles was früher problemlos unvernetzt funktioniert hat, wird heute über das Internet erledigt - Einkäufe, Beratungen, Nachschlagen von Fachliteratur, soziale Interaktion, teilweise gar E-Voting, Partnersuche und vieles mehr findet heute unter anderen online statt, bequem von Zuhause aus, rund um die Uhr und nur ein paar Mausklicks entfernt.
+
+Die Covid-19-Pandemie hat diesen Trend hin zum Digitalen weiter verstärkt, etliche Büroangestellte wurden ins \textit{home office} geschickt, ehemals physisch stattfindende Meetings wurden digital von Zuhause aus geführt und Kultur- und Gastronomiebetriebe (bspw. Clubs, Kinos, Restaurants) mussten lange die Türen geschlossen halten, was zu einer klaffende Lücke im Abendprogramm vieler Mitmenschen geführt haben dürfte. Die Zeitung \textit{New York Times} schreibt kurz nach Beginn der Pandemie, dass die Menschen mehr an ihren Desktops (statt am Mobiltelefon) verbringen und signifikant mehr \textit{traffic} auf Webpräsenzen wie Facebook, Netflix und YouTube verursachen \parencite[]{KoezeElla;Popper2020}. 
+
+Diese vorgängig genannten, sowie viele weitere Umstände haben zu einem massiven Wachstum des Datenvolumens geführt, welches täglich über das Internet ausgetauscht wird. So berichtet das, in \textit{Business Intelligence} und \textit{Data Visualization} spezialisierte, Unternehmen \textit{Domo}, dass 2018 durchschnittlich 3'138'420 GB Daten pro Minute über das Internet ausgetauscht wurden und schätzt für 2020, dass weltweit durchschnittlich 1.7 MB Daten pro Person und Sekunde generiert werden \parencite[]{DomoInc.2019}.
+
+Angesichts der Grössenordnung dieser Zahlen, stellt sich relativ schnell die Frage, was denn alles in diesen 1.7 MB Daten enthalten sein könnte und während diese Frage - falls überhaupt - nicht leicht zu klären ist, sollte klar sein, dass darin mitunter auch persönliche Daten enthalten sind. Tech-Giganten wie Google und Facebook verbuchen jährlich Milliardengewinne im zwei- bis dreistelligen Bereich durch ihre Äktivitäten im Ökosystem der Werbeindustrie, denn der von ihnen gepflegte Ansatz des \textit{targeted advertising} löst effizient ein uraltes Problem, nämlich die Frage danach, wie man eine Werbung vornehmlich denjenigen zeigt, welche sich potenziell für das damit verbundene Produkt interessieren.
+\newpage
+
+Es ist mittlerweile eine Art von Normalität, dass wenn man sich ein Produkt in einem Onlineshop anschaut, die Möglichkeit besteht, dass dieses Produkt einem später als \textit{sponsored post} wieder auf Facebook und Instagramm begegnet, sowie dass Google in Suchresultaten oder über eine Vielzahl von Webseiten \textit{Google ads} für das Produkt schaltet und man vielleicht sogar Mails erhält, welche einem auf einen Rabatt aufmerksam machen wenn wir das Produkt jetzt kaufen. Es mag dystopisch anmuten, aber es handelt sich dabei um eine täglich beobachtbare Realität.
+
+Ein von der \textit{International Conference on Information Systems Scholars} im Jahr 2016 als \textit{Best Paper} ausgezeichneter wissenschaftlicher Artikel, geht gar so weit das vorherrschende öknomische System als Überwachungskapitalismus zu bezeichnen \parencite[]{zuboff2015big}. Zuboff (ibid.) referenziert dabei einen wirtschaftswissenschaftlichen Beitrag von Val Harian, dem Chefökonom von Google, und nennt auf Basis dieses Beitrags vier Hauptmerkmale, welche den Überwachungskapitalismus ausmachen:
+\begin{itemize}
+    \item Den Drang zu immer mehr Datenextraktion und -analyse.\vspace{-1mm}
+    \item Die Entwicklung neuer Vertragsformen durch Nutzung von Computer-Monitoring und Automation.\vspace{-1mm}
+    \item Das Bedürfnis Nutzerinnen und Nutzern digitaler Plattformen Dienste in personalisierter und anpassbarer Art und Weise anzubieten.\vspace{-1mm}
+    \item Die Nutzung technologischer Infrastruktur um fortlaufend Experimente mit Nutzerinnen und Nutzern, sowie Konsumentinnen und Konsumenten auszuführen.
+\end{itemize}
+
+Angesichts dieser Definition von Hauptmerkmalen, scheint es nicht vermessen das ökonomische System in welchem wir leben, als qualifiziert zu erachten Überwachungskapitalismus genannt zu werden. Das impliziert, dass wir in einem System leben könnten, in welchem wir zunehmend - durch die Kommerzialisierung persönlicher Daten - zu gläsernen Menschen werden und welches unsere menschliche Natur systematisch nutzt, um mehr Kontrolle über unser Verhalten zu erlangen.
+
+Aus diesem und einer Vielzahl weiterer Gründe ist der Datenschutz heute wichtiger denn je, denn Gedankengut, Technologie und Infrastruktur, welche für eine tiefgreifende Überwachung notwendig sind, existieren längst und die Verfahren die zur Bewerkstelligung dieser Überwachung angewandt werden, sind für Endnutzerinnen und Endnutzer oft nicht sichtbar. Deshalb braucht es eine starke gesetzliche Grundlage, welche diesen Absichten entgegenwirken kann und klar regelt unter welchen Umständen das Sammeln von persönlichen Daten legitim ist und welche Randbedingungen in diesem Zusammenhang gelten.
+
+\vspace{3mm}
+% quote snowden
+\textit{“Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say.”} 
+\vspace{-2mm} \begin{flushright} \cite{SnowdenEdward;Jaffer2015} \end{flushright} \vspace{2mm}
+
+\noindent Doch erfreulicherweise ist der \acrshort{eu} Datenschutz nicht gleichgültig, sondern ein wichtiges Anliegen, denn der Art. 8 der Charta der Grundrechte der Europäischen Union (\acrshort{grch}) lautet:
+\begin{itemize}
+    \item Hat jeder das Recht auf den Schutz seiner persönlichen Daten. \vspace{-1mm}
+    \item Müssen diese Daten in fairer Art und Weise für die spezifizierten Zwecke verwendet werden und benötigen einen legitimen Rechtfertigungsgrund. \vspace{-1mm}
+    \item Hat jeder das Recht darauf Auskunft über die Daten einzuholen, welche über sie/ihn gesammelt wurden. \vspace{-1mm}
+    \item Wird die Einhaltung dieser Vorschriften durch eine unabhängige Authorität kontrolliert.
+\end{itemize}
+Dieses Grundrecht und seine Implikationen wurden durch die Datenschutz-Grundverordnung (\acrshort{dsgvo}) ausformuliert und die, noch aus prä-\acrshort{eu} Zeiten stammende Datenschutzrichtlinie, offiziell bekannt als \textit{Richtlinie 95/46/EG zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten und zum freien Datenverkehr}, abgelöst.
+
+Durch die Einführung der \acrshort{dsgvo} im Jahre 2018 fing im europäischen Wirtschaftsraum, und teilweise auch darüber hinaus, eine neue Ära für den Datenschutz an. Als direkte Folge dieser Einführungen stellte sich eine \acrshort{eu}-weite Harmonisierung der Rechtslage im Bezug auf Datenschutz in allen 27 Mitgliedstaaten ein und unter anderem wurden einheitliche Anforderungen für geschäftliche Datentransfers ins Ausland festgelegt, sowie auch natürlichen Personen rechtlich mehr Kontrolle über ihre eigenen Daten zugesichert. 
+\end{multicols*}
+
+\noindent\begin{minipage}[t]{\textwidth}
+\begin{multicols}{2}
+\setlength\parindent{12pt}
+% ------------------------------------------------------------------
+\subsection{Gegenstand der Arbeit}
+Im Rahmen dieser Arbeit wird das Spannungsfeld zwischen Technologie, Datenschutz und Geschäftsinteressen - hinsichtlich der Thematik des \gls{webtracking} - erkundet und untersucht. Dieses Kapitel beschreibt die Forschungsfragen und den Rahmen der vorliegenden Arbeit.
+
+\vspace{2mm}
+\subsubsection{Problem}
+\vspace{-1mm}
+Abhängig von der eingenommenen Perspektive fällt die Enumerierung der Probleme im Bereich des Webtracking anders aus.
+
+\vspace{2mm}
+\subsubsubsection{für geschäftliche Entitäten}
+\vspace{-1mm}
+Im Raum der Europäischen Union (\acrshort{eu}) wird der Schutz persönlicher Daten durch die Datenschutz-Grundverordnung (\acrshort{dsgvo}), international besser bekannt als \textit{General Data Protection Regulation} (\acrshort{gdpr}), geregelt. 
+
+Die \acrshort{dsgvo} ist eine äusserst umfangreiche Rechtsvorschrift, deren Komplexität durch das Wechselspiel mit anderen europäischen Richtlinien (bsp. \gls{eprivacy}) und daraus resultierenden nationalen Gesetzen noch weiter erhöht wird. 
+Abweichungen von den gesetzlich festgelegten Bestimmungen können potentiell verheerende Geldstrafen (Art. 83 \acrshort{dsgvo}), sowie auch Reputationsschäden nach sich ziehen und stellen so erhebliche Risiken für Geschäfte dar, deren Geschäftstätigkeit nicht \acrshort{dsgvo}-konform ist.
+
+Insofern soll die vorliegende Arbeit mitunter zur Schaffung von mehr Klarheit darüber dienen, welche Massnahmen Unternehmen im Bereich ihrer Webpräsenz zu ergreifen haben um die \acrshort{dsgvo} nicht bloss als eine Quelle von Risiken, sodern als legitimierendes Fundament ihrer Datenverarbeitungstätigkeiten wahrzunehmen.
+
+Zusätzlich gilt es zu bemerken, dass die Inzidenz gemeldeter \textit{data breaches} seit der Einführung der \acrshort{dsgvo} stetig zugenommen hat (siehe Abb. \ref{fig:data_breaches_per_country}) und es sich insofern empfiehlt datenschützerisch auf den aktuellen Stand zu kommen, da dies im Falle des Eintretens solch eines Ereignisses bei der Verhängung von Geldstrafen zur Milderung des Strafmasses beitragen und gegebenenfalls das Ausmass des \textit{data breach} signifikant reduzieren kann.
+\vspace{2mm}
+\subsubsubsection{für Endnutzerinnen und -nutzer}
+\vspace{-1mm}
+Aus der Perspektive der Nutzerinnen und Nutzer ist die kontinuierliche Weiterentwicklung und Neuerfindungen im Bereich der Trackingmethoden äusserst problematisch, da von regulären Nutzerinnen und Nutzern nicht erwartet werden kann, dass diese sich ständig mit dem technologischen Wandel in diesem Gebiet auseinandersetzen, geschweigedenn die Effizienz von Gegenmassnahmen auf Basis vorhandener Marketingversprechungen beurteilen. 
+
+Idealerweise würde mehr Forschung darüber existieren, wie man sich umfassend vor Webtracking schützt, dies ist aber in Anbetracht der Komplexität und dem Verlust an \textit{user experience} (UX) nach wie vor nicht wirklich praktikabel, weshalb das Wissen über Rechte im Zusammenhang mit ihren Daten umso wichtiger ist, um diese Rechte entsprechend einfordern oder einen Betreiber für die Nichterfüllung seiner Pflichten rügen und gegebenenfalls bei einer \acrshort{dpa} melden zu können. 
+\end{multicols}
+\end{minipage}
+\begin{figure*}[hb]
+ \centering
+ \includegraphics[width=\linewidth]{images/1_Intro/data_breaches_per_country.png}
+ \captionof{figure}{Gemeldete \textit{data breaches} in \acrshort{eu}-Mitgliedstaaten. (\citeauthor{Piper2019} \citeyear{Piper2021}, \citeyear{DLAPiper2020}, \citeyear{Piper2019})}
+ \label{fig:data_breaches_per_country}
+\end{figure*}
+\newpage
+\begin{multicols*}{2}
+\subsubsection{Forschungsfragen}
+Ein beachtlicher Teil dieser Arbeit untersucht die technischen Aspekte der Thematik \gls{webtracking} und sucht dabei folgende Fragestellungen zu beantworten:
+\begin{itemize}
+    \setlength\itemsep{0.05em}
+    \item Mit welchen Methoden wird das Surfverhalten von Nutzerinnen und Nutzern verfolgt?
+    \item Welche Gegenmassnahmen können Nutzerinnen und Nutzer ergreifen?
+    \item Was sind Implikationen der genannten Methoden und Gegenmassnahmen?
+    \item Wie wirkt sich die \acrshort{dsgvo} auf diese Methoden zur Überwachung von Nutzerinnen und Nutzern aus?
+\end{itemize}
+
+\subsection{Umfang und Zielpublikum}
+Die vorliegende Arbeit untersucht intensiv den Stand der Praxis/Technik und Wissenschaft bezüglich \gls{webtracking} und richtet dabei besonderes Augenmerk auf die Methoden, die dabei zur Anwendung kommen, sowie Gegenmassnahmen die Nutzerinnen und Nutzer des Internets ergreifen können. Weiter werden Implikationen dieser Ansätze und die Auswirkungen der \acrshort{dsgvo} auf diese Datenverarbeitungstätigkeiten besprochen.
+Auf Grund der interdisziplinären Natur des Untersuchungsgegenstandes dürften unterschiedliche Aspekte dieser Publikation für verschiedene Zielgruppen von Interesse sein:
+\begin{itemize}
+    \item \textbf{Internetnutzerinnen und -nutzer}
+    \ \\
+    dürften sich insbesondere für die in Kapitel \ref{lesezeichen_inet_users} vorgestellten Mittel zur Verbesserung des Schutzes ihrer Privatsphäre interessieren.
+    \item \textbf{Technisch interessierte Personen}
+    \ \\
+    können sich im Kapitel \ref{lesezeichen_tech_vers_leser} über die Entwicklung und den momentanen Stand des \gls{webtracking} sowohl im Bereich der Praxis/Technik, als auch in der Wissenschaft verschaffen.  
+    \item \textbf{Geschäftliche Entitäten}
+    \ \\
+    werden im Kapitel \ref{lesezeichen_business} die Auswirkungen der \acrshort{dsgvo} auf die Methoden des \gls{webtracking} nachvollziehen können und im Anhang \ref{lesezeichen_checklist} eine Checkliste finden um ihre eigene Aufstellung in Bezug auf \acrshort{dsgvo}-Konformität beurteilen zu können, bzw. Mängel zu entdecken.
+    \item \textbf{Studenten / wissenschaftl. Tätige}
+    \ \\
+    interessieren sich möglicherweise, in Abhänigkeit ihrer Ausrichtung, für mehrere der oben erwähnten Inhalte, sowie auch für die verwendeten Methoden in Kapitel  \ref{lesezeichen_methoden} und den Ausblick in Kapitel \ref{lesezeichen_ausblick}, welcher weitere Forschungsideen und ggf. ungelöste Probleme im Bereich \gls{webtracking} präsentiert. 
+\end{itemize}
+% ------------------------------------------------------------------
+\end{multicols*}
+\newpage
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% CURRENT STATE OF THE SCIENCES, TECHNOLOGY AND AFFAIRS
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% - Übersicht und Auseinanderestzung mit den Methoden, welche angewandt werden um Surfverhalten von Endnutzern zu verfolgen.
+% - Beleuchten möglicher Gegenmassnahmen
+% - Diskussion der Implikationen der Nutzung von Trackingmethoden und mögicher Gegenmassnahmen
+% - Interaktionen mit der General Data Protection Regulation aufzeigen
+\noindent\begin{minipage}[t]{\textwidth}
+\begin{multicols}{2}
+\section{Stand der Forschung} \label{sec:state_ot_art}
+\label{lesezeichen_inet_users}
+Im vorliegenden Kapitel beleuchten wir den Forschungsstand hinsichtlich \gls{webtracking}, der dazu verwendeten Methoden, möglicher Gegenmassnahmen, sowie deren Implikationonen und die Auswirkungen der \acrshort{dsgvo}. 
+Zwecks der Sichtung geeigneter Forschungsliteratur wurden primär die folgenden drei Suchdienste verwendet:
+\begin{itemize}
+    \item \textbf{Google Scholar} 
+    ist eine Suchmaschine der \textit{Google LLC}, welche der allgemeinen Literaturrecherche wissenschaftlicher Dokumente dient. \vspace{-2mm}
+    \item \textbf{IEEE Explore} 
+    die digitale Bibliothek der \textit{\gls{gls-ieee}} (\acrshort{ieee}), welche Zeitschriftenartikel, technische Standards und ähnliche Materialen aus den Gebieten Informatik, Elektro- und Elektronikwissenschaften und verwandter Forschungsgebiete zur Verfügung stellt. \vspace{-2mm}
+    \item \textbf{Springer Link}
+    bezeichnet den Online-Informationsdienst des Springer Verlags für naturwissenschaftliche, technische und medizinische Bücher und Zeitschriften.
+\end{itemize}
+Wie in Tabelle \ref{table:research_literature} ersichtlich zeigt sich bei deren Einsatz, dass insbesondere \textit{Google Scholar} auf einen sehr umfangreichen Fundus an wissenschaftlichen Arbeiten in diesem Feld zurückgreift. Angesichts dieser hohen Zahl an verwertbaren Arbeiten, sowie dem beobachteten Rückgang publizierter Arbeiten rund um das Thema \gls{webtracking}, liegt die Vermutung nahe, dass der Forschungsgegenstand dieser Arbeit bereits hinreichend mit einer Vielzahl von Methoden ausgeleuchtet wurde; es stellt sich jedoch heraus, dass es schwierig ist sich schnell einen umfassenden Überblick über verwendete Trackingmethoden, Gegenmassnahmen und Auswirkungen der \acrshort{dsgvo} zu verschaffen. 
+Die Gründe dafür sind vielseitig:
+\begin{itemize}
+    \item Es sind nur sehr wenige gross angelegte quantitative Studien auffindbar, was die Schwierigkeit erhöht fundierte und repräsentative Aussagen über den effektiven Einfluss der \acrshort{dsgvo} zu machen.  
+    \item Eine Vielzahl von Arbeiten haben einen anderen Fokus gesetzt und setzen sich beispielsweise vertieft mit einzelnen Verfahren auseinander.  
+    \item Im Zusammenhang mit dem Begriff \gls{webtracking} gibt es vergleichsweise wenig Literatur, welche in Verbindung mit der \acrshort{dsgvo} gebracht wird - diese Zahl wird weiter geschmälert durch Publikationen deren Untersuchungsgegenstand zwar diese Begriffe umfasst, aber nicht die Auswirkungen der \acrshort{dsgvo} behandelt. Bemerkenswert ist hier jedoch, dass der Suchbegriff \textit{\gls{webtracking} + GDPR} beinahe schon halb so viele Resultate wie der Suchbegriff \textit{\gls{webtracking} Countermeasures} liefert und ähnlich viele neue Arbeiten im Jahr 2021 verzeichnet. Dies ist insbesondere interessant, da der letztere Begriff schon bedeutend länger als mögliches Forschungsthema untersucht werden kann.
+    \item Gerade dem Thema der Gegenmassnahmen scheint von der wissenschaftlicher Seite her verhältnismässig wenig Aufmerksamkeit gewidmet worden zu sein. Eine Substitution von \textit{Countermeasures} durch synonyme Begriffe, wie bsp. \textit{Defenses}, liefern zwar ähnlich viele, aber konsistent weniger Resultate.
+\end{itemize}
+\vfill \null
+\end{multicols}
+\end{minipage}
+% TABLE -------------------------------- BEGIN
+\begin{table*}[hb]
+\caption{Anzahl Suchresultate einer ersten Literaturrecherche}
+\label{table:research_literature}
+\begin{tabular}{ @{\hspace{1\tabcolsep}} @{}lllll@{}@{\hspace{1\tabcolsep}} }
+\toprule
+                                    & Zeitraum & Google Scholar & IEEE Xplore & Springer Link \\ \midrule        \rowcolor{gray!20}
+\gls{webtracking}                   & total    & 3'140'000      & 3547        & 204'085       \\                 \rowcolor{gray!20}
+                                    & nur 2021 & 47'400         & 128         & 20'268        \\
+\gls{webtracking} + Methods         & total    & 2'780'000      & 897         & 204'059       \\
+                                    & nur 2021 & 40'300         & 50          & 17'660        \\                 \rowcolor{gray!20}
+\gls{webtracking} + Countermeasures & total    & 32'300         & 8           & 4'818         \\                 \rowcolor{gray!20}
+                                    & nur 2021 & 3'100          & 2           & 1'225         \\
+\gls{webtracking} + GDPR            & total    & 14'800         & 1           & 1'942         \\
+                                    & nur 2021 & 3'070          & 0           & 932           \\ \bottomrule
+\end{tabular}
+\end{table*}
+% TABLE -------------------------------- END
+\newpage
+\begin{multicols*}{2}
+Bei genauerer Betrachtung der Suchresultate fällt auf, dass \textit{Google Scholar} die über \textit{Springer Link}, \textit{\acrshort{ieee} Xplore}, \textit{\gls{gls-acm}} und weitere Herausgeber verfügbar gemachte Literatur ebenfalls indexiert. Daher ist es sinnvoller für die nachfolgende Betrachtung nur die Treffer von \textit{Google Scholar} zu zählen, da sonst durch Doppelzählungen eine Verzerrung entstünde.
+
+Mit den bereits genannten Suchbegriffen (siehe Tabelle \ref{table:research_literature}) kann man nun, durch Einschränkung des Zeitraums aus welchem die gewünschten Suchresultate stammen sollen, die Anzahl dazu passender veröffentlichter Arbeiten eines bestimmten Jahres abfragen. Während sich hier zweifelsohne inhaltliche \textit{\gls{falsep}}, sowie \textit{\gls{falsen}} und auch Mehrfachnennungen einschleichen können (bspw. wegen Arbeiten die über mehrere Herausgeber verfügbar sind), kann man, unter der Annahme, dass diese Fehlerquoten sich nicht signifikant in den letzten fünf Jahren verändert haben, immerhin die mit den entsprechenden Begriffen verbundenen Trends zur Publikation von wissenschaftlichen Arbeiten zu beobachten (siehe Anhang Tabellen \ref{appendix:tab-1} und \ref{appendix:tab-2} für die vollständigen Daten).
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{images/2_state_of_the_art/Suchbegriffe_Entwicklung_scatter.png}
+ \captionof{figure}{Multi-Liniendiagramm zu Trefferzahlen von \textit{Google Scholar} für Ausdruck \enquote{\gls{webtracking}}}
+ \label{fig:Suchbegriffe_Entwicklung_WT)}
+\end{figure}
+
+In Abbildung \ref{fig:Suchbegriffe_Entwicklung_WT)} kann man leicht sehen, dass zwischen 2016 und 2020 die Zahl der Publikationen um den Suchbegriff \enquote{\gls{webtracking}} stark rückläufig war, 2016 waren es gemäss dem Datensatz von \textit{Google Scholar} 314'000 wissenschaftliche Beiträge, während es 2020 gerade noch 32'400 waren. Es handelt sich dabei um ein lokales Minimum, da für das noch unvollendete Jahr 2021 bereits mehr Beiträge verzeichnet sind und so ein positiver Trend bereits jetzt gesichert ist. 
+
+Derselbe Trend ist auch für den Suchbegriff \enquote{\gls{webtracking} Methods} beobachtbar, was wahrscheinlich darauf zurückzuführen ist, dass eine Vielzahl von Beiträgen, welche beim Suchbegriff \enquote{\gls{webtracking}} Treffer liefern in irgend einer Form Methoden erwähnen, ohne zwangsläufig genauer auf diese einzugehen. 
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{images/2_state_of_the_art/Suchbegriffe_Entwicklung_WTCM.png}
+ \captionof{figure}{Liniendiagramm zu Trefferzahlen von \textit{Google Scholar} für Ausdruck \enquote{\gls{webtracking} Countermeasures}}
+ \label{fig:Suchbegriffe_Entwicklung_WTC)}
+\end{figure}
+\vspace{-5mm}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{images/2_state_of_the_art/Suchbegriffe_Entwicklung_WTGDPR.png}
+ \captionof{figure}{Liniendiagramm zu Trefferzahlen von \textit{Google Scholar} für Ausdruck \enquote{\gls{webtracking} GDPR}}
+ \label{fig:Suchbegriffe_Entwicklung_WTGDPR)}
+\end{figure}
+
+
+Auf Grund der vergleichsweise verschwindend kleinen Anzahl Treffer mit den Suchbegriffen \enquote{\gls{webtracking} Countermeasures} und \enquote{\gls{webtracking} GDPR}, lohnt es sich diese in einem eigenen Liniendiagramm anzusehen. Dabei fällt auf, dass die jährliche Anzahl wissenschaftlicher Beiträge rund um diese beiden Suchbegriffe zwar eher tief ist, aber seit 2016 einen stetigen Aufwärtstrend verzeichnen. Ob dieser Trend 2021 weiterhin positiv bleiben wird, lässt sich zum momentanen Zeitpunkt noch nicht abschliessend beurteilen. 
+
+Auf den folgenden zwölf Seiten wird der Stand der Forschung anhand der Inhalte von 50 ausgewählten Forschungsarbeiten tabellarisch zusammengefasst und im Anschluss hinsichtlich der Beantwortung der Forschungsfragen bewertet.
+\end{multicols*}
+\newpage
+% TABLE -------------------------------------------------------BEGIN
+\noindent
+\newgeometry{left=25mm, top=32mm, bottom=25mm, right=30mm}
+\begin{landscape}
+\subsection{Überblick über Inhalte der systematisch ausgewählten Literatur}
+\definecolor{light-gray}{HTML}{EEEEEE}
+\definecolor{white}{HTML}{FFFFFF}
+\rowcolors{1}{white}{light-gray}
+\begin{longtable}[h!]{| L{3.5cm} | L{10cm} | L{3.5cm} | c | L{2.5cm} |}
+ \hiderowcolors
+ \caption{Inhalte der, durch systematische Literaturrecherche ausgewählten, Forschungsarbeiten \label{table:research}}\\
+ \showrowcolors
+ 
+ \hline \rowcolor{black}
+ \multicolumn{5}{| c |}{\color{white}Beginn der Tabelle}\\
+ \hline
+ \rowcolor{Fuchsia} \color{white} Autor & \makecell[l]{ \color{white} Forschungsziel \\ \color{white} und -erkenntnisse} & \color{white} Methodik & \color{white} Jahr & \color{white}Publikationsform\\
+ \hline
+ \endfirsthead
+
+ \hline \rowcolor{black}
+ \multicolumn{5}{| c |}{\color{white}Fortführung der Tabelle \ref{table:research}}\\
+ \hline
+ \rowcolor{Fuchsia} \color{white} Autor & \makecell[l]{ \color{white} Forschungsziel \\ \color{white} und -erkenntnisse} & \color{white} Methodik & \color{white} Jahr & \color{white}Publikationsform\\
+ \hline
+ \endhead
+
+ \hline
+ \endfoot
+
+ \hline \rowcolor{black}
+ \multicolumn{5}{| c |}{\color{white}Ende der Tabelle \ref{table:research}}\\
+ \hline\hline
+ \endlastfoot
+\citeauthor{acar2014web}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Automatisierte Auswertung von \textit{canvas fingerprinting, cookie syncing, evercookies} \\ \textbf{FE:} 5\% der Top 100'000 Alexa Webseiten nutzen die untersuchten Trackingmethoden}  &
+\makecell[l]{Prototyping \\ \\ Querschnittsanalyse, \\ quantitativ \\gross angelegt \\ (100'000 Webseiten) }  &
+\citeyear{acar2014web}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+ 
+\citeauthor{adamsky2020tracking}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Analyse der technischen \textit{use cases} von Fingerprintingverfahren, Bewertung des \textit{privacy impact} und Ansätze für Gegenmassnahmen, Empfehlungen aus technischer Sicht für die Stakeholder des Entwurfs der ePrivacy Regulation\\ \textbf{FE:} Fingerprinting stellt eine ernsthafte Gefahr für die Wahrung der Privatsphäre dar, ist schwierig zu detektieren, Gegenmassnahmen sind nicht einfach zu implementieren und haben oft kontraproduktive Auswirkungen. Ein generelles Verbot könnte so schädlich sein wie die unregulierte Nutzung dieses Verfahrens (Existenz legitimer sowie bösartiger \textit{use cases})} &
+\makecell[l]{Literaturarbeit}  &
+\citeyear{adamsky2020tracking}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\
+
+\citeauthor{al2020too}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Diskussion von Massnahmen gegen Fingerprinting \\ \textbf{FE:} Gegenmassnahmen haben gravierende Limitationen; Notwendigkeit der Unterstützung seitens Browserhersteller um Fingerprinting zu kontrollieren, Vorschlag eines \textit{browser identifier} um \textit{cookies} und Fingerprinting redundant zu machen}  &
+\makecell[l]{Diskursanalyse}  &
+\citeyear{al2020too}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{Bujlow2017}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung der existierenden Literatur mit Fokus auf die, von Web-Services genutzten, Verfahren um Nutzerinnen und Nutzer zu tracken, sowie deren Nutzen, Implikationen und mögliche Gegenmassnahmen. \\ \textbf{FE:} Beschreibung zahlreicher \gls{webtracking}-Verfahren. Klassifizierung der Methoden nach fünf Gruppen (\textit{sessions, client storage, client cache, fingerprinting} und \textit{other})}  &
+\makecell[l]{Literaturarbeit}  &
+\citeyear{Bujlow2017}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{caffarraregulatory}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Einblicke in den Einfluss der \acrshort{dsgvo} auf den globalen Datenmarkt \\ \textbf{FE:} Veränderung angefragter \textit{third-party domains} um -8.1\% auf \acrshort{eu}-Webseiten und -2.4\% auf Webseiten ausserhalb der \acrshort{eu} }  &
+\makecell[l]{Beobachtung}  &
+\citeyear{caffarraregulatory}  &
+\makecell[l]{Fachartikel, \\ online}\\ 
+
+\citeauthor{castell2020network}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Erstellen einer Anleitung zu \gls{webtracking}, seinen Implikationen für die Privatsphäre und Sicherheit, sowie auch die Nutzung von Netzwerkmessungen zur Erkennung und Analyse solcher Verfahren.\\ \textbf{FE:} Eignung von \textit{Online Resource Mapper} (ORM) um Daten im Kontext von \gls{webtracking} zu erheben. Drei Herausforderungen an die Detektions- und Analyseansätze: das kontinuierlich sich weiterentwickelnde Ökosystem, Obfuskation und Dynamik der Umgebung und der Mangel öffentlicher Datensätze.}  &
+\makecell[l]{Prototyping \\ \\ Querschnittsanalyse, \\ quantitativ}  &
+\citeyear{castell2020network}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{castell2021tracksign}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Softwarebasierte Detektion des Einsatzes von Trackingverfahren \\ \textbf{FE:} Detektionsrate 92\%, 30'000 neue Tracker entdeckt, mehr als 10'000 Tracker-Ressourcen und 270'000, bisher nicht in \textit{\gls{blacklist}s} enthaltener Tracking-\textit{\acrshort{url}s}}  &
+\makecell[l]{Prototyping \\ \\ Experiment \\ gross angelegt \\ (100'000 Webseiten, \\ 1 Mio. Web-Ressourcen, \\ >5 Mio. HTTP Anfragen) }  &
+\citeyear{castell2021tracksign}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{demetzou2020processing} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Identifikation und Enummeration der qualifizierenden Bedingungen, welche bei der Datenverarbeitung zu hohen Risiken führen. \\ \textbf{FE:} Sammlung der Bedingungen (befreit von Duplikaten), welche in den nationalen \textit{\gls{blacklist}s} der \textit{Data Protection Authoritys} (\acrshort{dpa}) enthalten sind. Vorschlag einer Klassifikation nach fünf Konzepten (\textit{control, reasonable expectations, (negative) impacts on rights and interests, scaling-up and identifiability})}  &
+\makecell[l]{Inhaltsanalyse,\\ qualitativ \\ zusammenfassend}  &
+\citeyear{demetzou2020processing} &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{diamantopoulou2019general} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Auffinden und Nutzung von Synergien zwischen \gls{iso27} \textit{\gls{gls-isms}} (\acrshort{isms}) und den Anforderungen der \acrshort{dsgvo}\\ \textbf{FE:} Die Anforderungen der \acrshort{dsgvo} werden durch den \gls{iso27} nicht vollständig befriedigt, es bestehen jedoch Synergien: der Implementationsaufwand, um den Anforderungen des Einen zu genügen, verringert sich mit dem Vorhandensein der Implementation des Anderen. Vorschlag eines konsolidierten Frameworks, welches die \textit{control objectives} und \textit{controls} des \acrshort{iso27} erweitert um \acrshort{dsgvo}-Konformität zu erreichen.}  &
+\makecell[l]{Literaturarbeit}  &
+\citeyear{diamantopoulou2019general}&
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{drozd2019agree}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Entwicklung und Evaluation eines \textit{Consent Request User Interface} (CoRe \acrshort{ui})\\ \textbf{FE:} Nutzerinnen und Nutzern haben mit CoRe UI mehr Kontrolle über ihre Daten und ein besseres Verständnis von Anfragen zur Einholung ihrer Zustimmung.}  &
+\makecell[l]{Prototyping\\ \\ Experiment, \\ qualitativ}  &
+\citeyear{drozd2019agree}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{ermakova2018web}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Aufzeigen des Forschungsstands: welche wissenschaftlichen Methoden verfolgt werden, welche Resultate damit erreicht wurden und in welchen Gebieten zukünftige Forschung stattfinden könnte. \\ \textbf{FE:} Die Informationssicherheitsforschung bedient sich vorwiegend der Methodologien von Paradigmen der Verhaltens- und Designforschung. Diskussion verarbeiteter Forschungsliteratur nach technologischen, datenschützerischen und kommerziellen Aspekten.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{ermakova2018web}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{faizkhademi2015fpguard} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Präsentation von \textit{FPGuard} einem Detektions- und Präventionsansatz gegen Fingerprinting, welcher zur Laufzeit aktiv ist.\\ \textbf{FE:} Canvas Fingerprinting waren mit 0.85\% zur Zeit die am häufigsten anzutreffende. Der, auf mehreren Algorithmen basierende, \textit{FPGuard} hat bei der Detektion besser als ein \textit{\gls{blacklist}}-basierter Ansatz abgeschnitten - \textit{\gls{blacklist}s} sind scheinbar anfälliger für \textit{\gls{falsep}s}.}  &
+\makecell[l]{Prototyping \\ \\ Experiment \\ mittlerer Umfang \\ (10'000 Webseiten)}  &
+\citeyear{faizkhademi2015fpguard} &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{Ferrara2018}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung ob \textit{\gls{staticanalysis}} eingesetzt werden kann um Berichte zu generieren, welche hilfreich im Hinblick auf die Bewertung der Konformität mit der \acrshort{dsgvo} sein könnten. \\ \textbf{FE:} Berichte für die unterschiedlichen Interessensgruppen werden in formalisierter Form präsentiert und eine Implementation dieser Ideen im \textit{Julia Static Analyzer} in Aussicht gestellt.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{Ferrara2018}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{fietkau2020elephant}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Systematische Analyse von verschiedenen \textit{JavaScript fingerprinting tools}, auf deren Basis die Software \textit{FPMON} erstellt.  \\ \textbf{FE:} \textit{Fingerprinter} sind eine Invasion in die Privatsphäre, untergraben aktuelle Regulationen, sind auf zahlreichen Webseiten mit sensiblen Daten präsent und derzeitige Gegenmassnahmen reichen nicht aus, weswegen FPMON auch als \textit{browser extension} veröffentlicht wird.}  &
+\makecell[l]{Prototyping \\ \\ Querschnittsanalyse, \\ quantitativ \\ mittlerer Umfang \\ (10'000 Webseiten)}  &
+\citeyear{fietkau2020elephant}  &
+\makecell[l]{Vorabdruck \\ eines \\ Fachartikels}\\ 
+
+\citeauthor{fouad2021detection} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Bekämpfung der Bedrohungen unserer Privatsphäre aus verschiedenen Perspektiven: Design einer Methodologie um die Praktiken, welche in die Privatsphäre eindringen, zu detektieren. Automatisches Auditing von Webseiten, sowie die Beurteilung der rechtlichen Konformität erkannter Praktiken. \\ \textbf{FE:} Umfassender Überblick über die Thematik des \gls{webtracking} unter Einbezug legaler Gesichtspunkte und viel technischen Details, die hilfreich sind \gls{webtracking} zu erkennen. Empfehlungen an die \acrshort{dpa}.}  &
+\makecell[l]{Literaturarbeit \\\\ Prototyping \\ \\ Experimente \& \\ Querschnittsanalysen, \\ quantitativ \\ umfangreich }  &
+\citeyear{fouad2021detection} &
+\makecell[l]{Doktorarbeit}\\ 
+
+\citeauthor{fouad2018missed}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Ausarbeitung eines alternativen Ansatzes zu \textit{\gls{blacklist}s} um akkurater Tracker zu detektieren\\ \textbf{FE:} Über 94.51\% der untersuchten Webseiten enthielten \textit{invisible pixels} und machten damit 35.66\% der \emph{third-party images} aus. 25.22-30.34\% der Tracker die durch diesen Ansatz detektiert wurden, wurden aber nicht durch die Listen von \textit{Disconnect} und \textit{EasyList\&EasyPrivacy} erkannt.}  &
+\makecell[l]{Prototyping \\ mittlerer Umfang \\ (10'000 Webseiten)}  &
+\citeyear{fouad2018missed}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{gomez2018hiding}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung ob Browser Fingerprinting nach wie vor eine effiziente Methode darstellt.\\ \textbf{FE:} Im verarbeiteten Datenset einer hochfrequentierten französischen \gls{domain} sind nur noch 33.6\% der \textit{fingerprints} eindeutig zuordenbar. Es wird bestätigt, dass die momentane Entwicklung im Bereich der Web-Technologien gutartige Veränderungen für \textit{user privacy} hat und würdigt diesbezüglich insbesondere die zunehmende Distanzierung von \gls{browserplugins}.}  &
+\makecell[l]{Querschnittsanalyse, \\ quantitativ \\ gross angelegt \\ (>2 Mio. Fingerprints)}  &
+\citeyear{gomez2018hiding}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{hravska2018browser}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Entwicklung  eines Browser Fingerprinting Skripts, welches fortschrittliche Fingerprinting-Verfahren verwendet \\ \textbf{FE:} Die gesammelten Daten enthalten nur 16.685 Bits Information und Rückführung dieses Resultats darauf, dass im Datenset mehrheitlich \textit{fingerprints} von Mobilgeräten vertreten und deren Browser uniformer sind.}  &
+\makecell[l]{Prototyping \\ Querschnittsanalyse, \\ quantitativ \\ mittlerer Umfang \\ (566'703 Fingerprints)}  &
+\citeyear{hravska2018browser}  &
+\makecell[l]{Masterarbeit}\\ 
+
+\citeauthor{Hupperich2015}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Aufzeigen des Umstands, dass weitverbreitete Fingerprinting-Verfahren für Mobilgeräte nur beschränkt brauchbar sind und Vorschlag eines effektiveren Fingerprinting-Systems, sowie dessen experimentelle Evaluation.\\ \textbf{FE:} Die für Browser-Fingerprinting betrachteten Charakteristika verlieren bei mobile Geräte ihre Aussagekraft. Alternative Merkmale werden vorgeschlagen und deren erhöhte Effektivität experimentell belegt.}  &
+\makecell[l]{Prototyping \\ \\ Experiment, \\ quantitativ \\ kleiner Umfang \\ (900 Probanden)}  &
+\citeyear{Hupperich2015}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{Huth2019}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung von acht \emph{privacy engineering} Ansätzen, welche auf ihre Abdeckung in Hinsicht auf die Anforderungen der \acrshort{dsgvo} und die Unterstüzung von Entwicklungsprozessen überprüft werden. \\ \textbf{FE:} Es existieren bereits umfassende Grundlagen um Systeme zu gestalten, welche \textit{privacy-aware} sind. Es wurden zwei wissenschaftliche Arbeiten identifiziert, die entweder eine gute Abdeckung der Anforderung seitens der \acrshort{dsgvo} oder eine gute Unterstützung für Entwicklungsprozesse ermöglichen.}  &
+\makecell[l]{Inhaltsanalyse, \\ qualitativ}  &
+\citeyear{Huth2019}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{Iordanou2018}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Entwicklung einer Messmethodologie um die Menge an \textit{tracking flows}, welche nationale/internationale Datenschutzgrenzen  überschreiten, in einer skalierenden Weise zu quantifizieren.\\ \textbf{FE:} Es wird gezeigt, dass das Tracking von sensiblen Daten (bspw. Gesundheitsdaten, sexuelle Orientierung, Daten von Minderjährigen, usw.) über Grenzen hinweg weit verbreitet ist und dass \textit{simple DNS redirection} und {PoP mirroring} nützliche Verfahren sind um solche Daten im nationalen Rahmen \enquote{einzuschliessen}.}  &
+\makecell[l]{Längsschnittanalyse \\ (350 User für 4 Monate) \\ \\ Querschnittsanalyse, \\ quantitativ \\ gross angelegt \\ (\textit{flows} von\\ >60 Mio. Nutzern \\ von 4 europäische \textit{\acrshort{isp}s})}  &
+\citeyear{Iordanou2018}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{iqbal2021fingerprinting} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Die Erstellung von Software zur Abwehr von Browser Fingerprinting, basierend auf \textit{machine learning} und einem \textit{syntaktisch-semantischen} [sic] Ansatz.\\ \textbf{FE:} Über 10\% der Top 100'000 Webseiten, sowie 25\% der Top 10'000 Webseiten nutzen Browser Fingerprinting. Es wurde die Nutzung neuer JavaScript \textit{\acrshort{api}s} dokumentiert, welche suggerieren, dass Fingerprinting-Verfahren weiterentwickelt werden.}  &
+\makecell[l]{Prototyping \\ \\ Querschnittsanalyse, \\ quantitativ \\ grosser Umfang \\ (100'000 Webseiten)}  &
+\citeyear{iqbal2021fingerprinting}&
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{jakobi2020web}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Die Relevanz von \gls{webtracking} zu demonstrieren, in dem aus den 100 populärsten Webseiten jedes \acrshort{eu}-Mitgliedsstaat Tracker identifiziert und die übertragenen Daten, sowie deren rechtliche Grundlage  analysiert werden. Diskussion der Konsequenzen für Design und Architektur um der \acrshort{dsgvo} zu genügen.\\ \textbf{FE:} Auch nach der Einführung der \acrshort{dsgvo} bleibt \gls{webtracking} weit verbreitet und Informationen über die Verarbeitungsprozesse entziehen sich nach wie vor der Aufmerksankeit der User.}  &
+\makecell[l]{Literaturarbeit \\\\ Querschnittsanalyse,\\ quantitativ \\ kleiner Umfang \\ (2800 Webseiten \\ 100/\acrshort{eu}-Mitgliedsstaat)}  &
+\citeyear{jakobi2020web}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{janssen2021current}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Entwicklung rechtlicher und funktional-technischer Anforderungen um den momentanen Herausforderungen zu genügen. \\ \textbf{FE:} Ein Requirement-Framework, welches die momentan notwendigen Implementationen, sowie auch Aspekte der kommenden ePrivacy Regulation, aufnimmt. Sammlung von 15 Requirements, wovon sieben \textit{non-functional requirements} (\acrshort{nfr}) und acht \textit{functional requirements} (\acrshort{fr}) sind.} &
+\makecell[l]{Systematische \\ Literaturrecherche \\ \\ Experteninterviews \\ \\ Querschnittsanalyse, \\ quantitativ \\ kleiner Umfang \\ (100 Webseiten) }  &
+\citeyear{janssen2021current}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{jesus2019did}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Diskussion des Problem, wie man in robuster Art und Weise demonstrieren kann, dass seitens des Users eine Zustimmung gegeben wurde. \\ \textbf{FE:} Adaption von \textit{fair-exchange}-Protokollen an das beschriebene Problem, sodass nach dem Austausch von persönlichen Daten ein kryptographischer Beleg vorliegt, durch welchen Nicht-Abstreitbarkeit erreicht wird.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{jesus2019did}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{kaaniche2020privacy}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Identifikation der \textit{privacy enhancing technologies} (\acrshort{pet}s), welche die - üblicherweise divergierenden - ökonomischen, wie auch ethischen Zwecke befriedigen können. \\ \textbf{FE:} Identifikation einer Taxonomie, welche \acrshort{pet}s in acht Kategorien einordnet. Diesen \acrshort{pet}s werden drei Kategorien von personalisierten Diensten gegenüberstellt und ermittelt, welche am Besten zusammenpassen im Hinblick auf die Erfüllung der angegebenen Anforderungen.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{kaaniche2020privacy}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{kretschmer2021cookie}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Die \acrshort{dsgvo} hat noch vor dem Inkrafttreten viele Diskussionen über den möglichen Einfluss ausgelöst, den sie auf Nutzer und Betreiber von Onlinediensten haben werde. Diese Frage wird nochmals rückblickend aufgegriffen um den effektiven Einfluss zu summarisieren. \\ \textbf{FE:} Obwohl \textit{privacy} zunehmend ein Schwerpunkt von Onlinediensten ist, bleibt Verbesserungspotential: mangelhafte \textit{policies}, schwer verständlich formulierte Informationen, sowie unzugängliche \textit{opt-outs}. Zusammenstellung von vier Richtlinien von Datenschutzforschern und \textit{\acrshort{dpa}s} für Betreiber von Onlinediensten.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{kretschmer2021cookie} &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{kurtz2018privacy}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Durchführung der \enquote{ersten} [sic], rigorosen und  systematischen Literaturrecherche zum Thema \textit{Privacy by Design} (\acrshort{pbd}). \\ \textbf{FE:} Ein erheblicher Mangel an Forschung im Bereich von \acrshort{pbd}, obwohl die \acrshort{dsgvo} diesen Punkt explizit hervorhebt, insbesondere im Hinblick darauf wie \acrshort{pbd} auch \textit{third parties} miteinbeziehen soll um die Effektivität von \acrshort{pbd} zu garantieren.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{kurtz2018privacy}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{kutylowski2020gdpr}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Aufmerksamkeit auf die entscheidenen Herausforderungen im Zusammenhang mit der \acrshort{dsgvo} lenken und die Allgemeinheit darüber informieren, dass die rechtlichen Konzepte der \acrshort{dsgvo} stellenweise nicht mit der technischen Realität vereinbar sind und eine Implementation der \acrshort{dsgvo} in solch einem Falle der erreichbaren Sicherheitsniveau und dem damit verbundenen Schutz der Privatsphäre schaden kann. \\ \textbf{FE:} Eine Liste von wesentlichen Konflikten zwischen \acrshort{dsgvo} und den vorhandenen Sicherheitstechnologien, sowie Diskussion diesbezüglicher Problemlösungsansätze.}  &
+\makecell[l]{Analyse, \\ argumentativ-deduktiv}  &
+\citeyear{kutylowski2020gdpr}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{laperdrix2020browser}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung der Forschungsliteratur über Browser Fingerprinting und damit einen Einstiegspunkt für Neulinge bieten. \\ \textbf{FE:} Beschreibung der Funktionsweise von Browser Fingerprinting, Analyse der Forschungsliteratur im Hinblick auf die enthaltenen Daten, Kategorisierung von Abwehrlösungen und detailierte Beschreibung der bisher unbewältigten Herausforderungen.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{laperdrix2020browser}  &
+\makecell[l]{Fachartikel}\\ 
+
+\citeauthor{197133}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Erforschung wie sich die Anzahl, Identitäten, Anwendungsbereich, Häufigkeit und Verhaltensweisen der dominanten Tracker über einen langen Zeitraum sich verändert hat.\\ \textbf{FE:} \textit{Third party \gls{webtracking}} konnte bereits in 1996 festgestellt werden, weit vor der Durchführung wissenschaftlicher Messungen. Auf Basis der Daten der Wayback Machine wird eine Längssschnittanalyse durchgeführt, welche gezeigt hat, dass Tracker heutzutage einen erweiterten Anwendungsbereich, erhöhte Komplexität, höherer Abdeckung und mehr Verbindungen zu anderen Trackern aufbauen als je zuvor. }  &
+\makecell[l]{Längsschnittanalyse, \\ quantitativ \\ (Zeitraum 20 Jahre)}  &
+\citeyear{197133}  &
+\makecell[l]{Publikationsform}\\ 
+
+\citeauthor{luangmaneerote2018defences}&
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Wie können randomisierte Attribute in Web Browser eingeführt werden um Browser Fingerprinting zu verhindern und dabei minimalen Einfluss auf das Erlebnis der Nutzerinnen und Nutzer nehmen? \\ \textbf{FE:} Ein Prototyp für den im Forschungsziel vorgestellten Ansatz, dessen Nutzerakzeptanz experimentell ermittelt wird.}  &
+\makecell[l]{Prototyping \\\\ Experiment, \\ quantitativ \\ kleiner Umfang \\ (120 Versuchspersonen)}  &
+\citeyear{luangmaneerote2018defences}&
+\makecell[l]{Doktorarbeit}\\ 
+
+\citeauthor{malloy2019graphing}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Ausarbeitung eines \textit{device graphing} Verfahrens. Dieses soll den zunehmend schwierigen Bedingungen im Hinblick auf Verfügbarkeit von clientseitigem Speicher, welchen man nach eigenen Regeln benutzen kann, Rechnung tragen und dabei ohne Verfahren wie Browser Fingerprinting auskommen. \\ \textbf{FE:} Ein auf \textit{Graph backfilling} basierendes Verfahren wird an einem Datensatz getestet und zeigt vielversprechende Resultate.}  &
+\makecell[l]{Querschnittsanalyse, \\ quantitativ \\ gross angelegt \\ (6.92 Mia. IDs)}  &
+\citeyear{malloy2019graphing}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{mohammadi2019privacy}&
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Ausarbeitung eines konzeptuellen Modells, sowie einen Machbarkeitsnachweis für ein \textit{privacy policy specification framework}, welches die Spezifikation der angewandten \textit{privacy policies} Nutzerinnen und Nutzern überlässt. \\ \textbf{FE:} Konzept eines solchen, auf \textit{sticky policies} basierenden, Frameworks, sowie eines \acrshort{ui}, welches die vorgesehene Schnittsteller für Nutzerinnen und Nutzer veranschaulicht.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{mohammadi2019privacy}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{musmeci2021risk}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung der Änderung des Risikos, welches mit dem Besuch einer Webseite assoziiert wird. Ermittlung des Einflusses von sowohl \textit{cookie bars} auf das Tracking-Ökosystem, als auch \textit{user consent} auf die Präsenz von Trackern in Netz.\\ \textbf{FE:} 53\% aller untersuchten Seiten installieren \textit{third party cookies} bevor sie die Zustimmung der Nutzer einholen, nach der Zustimmung sind es 64\%. Tracker von \textit{Doubleclick.net}  sind am häufigsten anzutreffen (78\% aller untersuchten Webseiten). Das Trackingrisiko nimmt gemäss Indikationen dieser Studie ab; es wird eingestanden, dass aufgrund unerkannter Trackingverfahren diese Werte mit Vorsicht zu geniessen sind.}  &
+\makecell[l]{Experiment, \\ quantitativ \\ mittlerer Umfang \\ (8362 Webseiten)}  &
+\citeyear{musmeci2021risk}  &
+\makecell[l]{Masterarbeit}\\ 
+
+\citeauthor{papadopoulos2018exclusive} &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung der Wirksamkeit von \acrshort{tls}, \textit{\gls{gls-vpn}s} (\acrshort{vpn}) und \gls{onionrouting} um \textit{privacy} auf dem Netz zu erzielen. \\ \textbf{FE:} Beschreibung von zwei \textit{privacy-breaching} Bedrohungen, welche durch Einsatz von \textit{cookie synchronization}, eine Reidentifikation von Nutzern ermöglichen. In diesem Zusammenhang werden die top 12'000 Alexa Webseiten untersucht und dabei festgestellt, dass durchschnittlich eine von 13 Webseiten seine Nutzerinnen und Nutzer derartigen \textit{privacy leaks} aussetzt.}  &
+\makecell[l]{Querschnittsanalyse, \\ quantitativ \\ mittlerer Umfang \\ (12'000 Webseiten)}  &
+\citeyear{papadopoulos2018exclusive}&
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{piras2019defend}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Design einer Architektur für eine \textit{data privacy governance platform}, welche die Anforderungen der \acrshort{dsgvo} umfassend abdeckt. \\ \textbf{FE:} \textit{DEFeND} (\textbf{D}ata gov\textbf{E}rnance \textbf{F}or supporti\textbf{N}g g\textbf{D}pr) [sic], eine \textit{data privacy governance platform}, welche die bereits vorhandenen heterogenen Tools einbindet, sowie deren Designprozess werden hier vorgestellt.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{piras2019defend}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{pugliese2020long}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung von Browser Fingerpriting und der diesbezüglichen Wahrnehmung und Einschätzungen der Nutzerinnen und Nutzer anhand einer Längsschnittanalyse. \\ \textbf{FE:} Es wurde gezeigt, dass durch Einbezug von gerätespezifischen und geräteunspezifischen Merkmalen eine erhöhte Stabilität der Fingerprints erreicht werden kann und dass die Situation zehn Jahre nach der Panopticlick-Studie sich nicht verbessert hat.}  &
+\makecell[l]{Längsschnittanalyse, \\ quantiativ \\ grosser Umfang \\ (1300 User, \\ \hspace{0.5em}300 Browsermerkmale, \\ \hspace{0.5em}88'000 Messungen)}  &
+\citeyear{pugliese2020long}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{roesner2012detecting}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Entwicklung einer clientseitigen Detektions- und Klassifikationsmethode für \textit{third-party} Tracker. \\ \textbf{FE:} Die Mehrzahl der kommerziellen Webseiten verwenden mehrere Tracker, es wird geschätzt dass einige Tracker mehr als 20\% des Surfverhaltens von Nutzerinnen und Nutzern erfassen. Zur Zeit der Studie existierten keine Mechanismen um das Tracking seitens sozialer Medien zu verhindern, weshalb zu diesem Zweck eine Gegenmassnahme (\textit{ShareMeNot}) entwickelt wurde.}  &
+\makecell[l]{Prototyping \\ Querschnittsanalyse, \\ quantitativ \\ kleiner Umfang \\ (500 Webseiten)}  &
+\citeyear{roesner2012detecting} &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{sakamoto2019after}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung der Interpretation der Werbeagenturen von Opt-outs vor und nach Inkrafttreten der \acrshort{dsgvo}. \\ \textbf{FE:} Etwa die Hälfte der Werbeagenturen stoppt das Webtracking nach einem Opt-out, jedoch fangen diese vereinzelt wieder an Nutzerinnen und Nutzer zu tracken sobald diese aktiv browsen. Es wurden keine Beweise für eine Veränderung in der Einstellung der Werbeagenturen zu \gls{webtracking} festgestellt.}  &
+\makecell[l]{Querschnittsanalyse, \\ quantitativ \\ kleiner Umfang \\ (100 Webseiten)}  &
+\citeyear{sakamoto2019after}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{sanchez2019can}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Evaluation des durchgeführten \gls{webtracking} auf hochfrequentierten Webseiten innerhalb und ausserhalb der EU um Rückschlüsse auf den Einfluss der \acrshort{dsgvo} zu erlauben.\\ \textbf{FE:} Der Einfluss der \acrshort{dsgvo} ist sowohl innerhalb, als auch ausserhalb der \acrshort{eu} messbar, dennoch bleibt \gls{webtracking} weiterhin weit verbreitet: identifizierende \textit{cookies} sind auf mehr als 90\% der Webseiten anzutreffen und deren Einsatz wird vor Nutzerinnen und Nutzern versteckt.}  &
+\makecell[l]{Querschnittsanalyse, \\quantitativ \\ kleiner Umfang \\ (2000 Webseiten)}  &
+\citeyear{sanchez2019can}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{solomos2021tales}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ \& FE:} Die Beschreibung eines neuartigen Fingerprinting-Verfahrens, welches sich Schwächen in der Implementation des Favicon-Cache zunutze macht und auf allen bedeutenden Browsern funktioniert.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{solomos2021tales}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{tomashchuk2019data}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Erstellen eines \gls{benchmark}s für Deidentifikationsprozesse unter Einbezug derer Natur, Kontext und Ziel des deidentifizerten Datensatzes um geeignete Kombinationen von Methoden zu ermitteln, welche beide Schlüsselfaktoren erfüllen: \textit{privacy}-Anforderungen und hohe Nutzbarkeit der Daten ermöglicht. \\ \textbf{FE:} Implementation des genannten Benchmarks, welcher eine erschöpfliche Explorierung aller Kombinationen von Deidentifikationsmethoden erforscht, bei welchen die Schlüsselfaktoren befriedigende Werte annehmen.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{tomashchuk2019data}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{unger2013shpf}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Integration neuer Mechanismen um vor Attacken wie \textit{session hijacking} zu schützen.\\ \textbf{FE:} Die Nutzung von Browser Fingerprinting wird vorgeschlagen um \textit{session hijacking} zu detektieren und Merkmale von \acrshort{html}5 sowie CSS beschrieben, die sich dazu eignen ohne auf den \textit{UserAgent string} zurückgreifen zu müssen. Das zu diesem Zweck erstellte Framework ist frei verfügbar.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{unger2013shpf}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{Upathilake2015}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Klassifikation von Fingerprinting, Aufzeigen der Implikationen für \textit{privacy} und Sicherheit, Diskussion kommerzieller Fingeprinting-Verfahren und Aufzeigen von Detektions- und Präventionsmassnahmen.\\ \textbf{FE:} Browser Fingerprinting hat sich rapide entwickelt seit es durch die Panopticlick-Studie ins Bewusstsein der User gedrungen sind. Generell sind Browser Fingerprinter nicht in der Lage mehrere User desselben Geräts zu unterscheiden. Mit Ausnahme der Technik, welche den Beschleunigungssensor verwendet, sind auch identisch konfigurierte Geräte nicht unterscheidbar.}  &
+\makecell[l]{Systematische \\ Literaturrecherche}  &
+\citeyear{Upathilake2015}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{urban2020measuring}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung und Evaluation der Effekte der \acrshort{dsgvo} auf das Ökosystem der Online-Werbungsbetreiber. \\ \textbf{FE:} Die generelle Verbindungsstruktur der Entitäten der Werbebranche, welche im Hintergrund \textit{cookie syncing} betreiben, wurde nicht durch die \acrshort{dsgvo} beinflusst. Verbindungen zwischen Usern und Webseiten haben um ca. 40\% abgenommen. Im Hinblick auf die Erfüllung der Bedingungen  von \acrshort{dsar}s, waren nur 58\% der angefragten Firmen in der Lage diese rechtzeitig zu beantworten.}  &
+\makecell[l]{Experiment \\ quantitativ \\ mittlerer Umfang \\ (400 Browserprofile \\ 40'000 Webseiten) }  &
+\citeyear{urban2020measuring}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{vastel2019tracking}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Veranschaulichung der Effektivität von Browser Fingerprinting, Design einer Testsuite um Massnahmen zu Fingerprinting zu evaluieren, Erforschung der Nutzung von Browser Fingerprinting um \gls{webcrawler} zu detektieren.\\ \textbf{FE:} Trotz häufiger Änderungen der Merkmale eines Fingerprints kann ein signifikanter Anteil der Browser über lange Zeit getrackt werden. Alle sieben untersuchten Gegenmassnahmen konnten erkannt werden und tragen so zu Identifizierbarkeit des Browsers bei. Es wurden drei Implementationen zur Beantwortung der einzelnen Forschungsfragen erstellt.}  &
+\makecell[l]{Prototyping \\\\ Längsschnittstudie, \\ quantitativ \\ mittlerer Umfang \\ (2346 Browser \\ über 2 Jahre \\ 122'000 Fingerprints)}  &
+\citeyear{vastel2019tracking}  &
+\makecell[l]{Doktorarbeit}\\ 
+
+\citeauthor{verleg2014cache}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Diskussion unterschiedlicher \textit{cookie}-Mechanismen und Untersuchung der Eignung des Caches eines Browsers um eine UID zu speichern und abzurufen. \\ \textbf{FE:} Es wird gezeigt, dass dies möglich ist und es, mit Ausnahme der Deaktivierung der entsprechenden Funktionalitäten (Cache, Browserverlauf, \textit{cookies}), keinen simplen Weg gibt die Anwendung solcher Verfahren zu verhindern.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{verleg2014cache}  &
+\makecell[l]{Bachelorarbeit}\\ 
+
+\citeauthor{wirth2018privacy}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Vorschlagen einer Methodologie um rechtliche Anforderungen in technische Richtlinien zu übersetzen. Damit soll Entwicklern aufgezeigt werden, wie deren Lösungen mit dem Prinzip \textit{Privacy by Design} \acrshort{pbd} konformieren können.Erste Schritte um einen Zertifikationsmechanismus nach Art.42 \acrshort{dsgvo} ins Leben zu rufen.\\ \textbf{FE:} Demonstration der Methodologie mit einer auf \gls{blockchain}-basierten \enquote{Blaupause}, welche das Konzept der Zustimmung des Datensubjekts einverleibt.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{wirth2018privacy}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+
+\citeauthor{yen2009browser}  &
+\makecell[l{{p{10cm}}}]{\textbf{FZ:} Untersuchung ob die Implementation eines Browsers, welche auf einem Gerät verwendet wird, mit signifikanter \textit{precision} und textit{recall} aus groben \textit{traffic summaries} (bspw. NetFlow) festgestellt werden kann. Demonstration der Konsequenzen der Identifikation von Browsern in Bezug auf die Deanonymisierung von Webseiten in Floweinträgen, welche anonymisiert wurden.\\ \textbf{FE:} Es wird gezeigt, dass eine Identifikation von Browsern aus groben \textit{traffic summaries}, sowie auch eine Deanonymisierung der besuchten Webseiten durch eine vorausgehende Klassifikation des Browsers möglich sind.}  &
+\makecell[l]{Prototyping}  &
+\citeyear{yen2009browser}  &
+\makecell[l]{Artikel aus \\ Konferenz- oder \\ Tagungsbericht}\\ 
+\end{longtable}
+\end{landscape}
+\restoregeometry
+% TABLE -------------------------------------------------------END
+\newpage
+\begin{multicols*}{2}
+\subsection[Webtracking: Methoden]{\gls{webtracking}: \\ Methoden}
+% ------------------------------------------------------------------
+\subsubsection{Assoziierte Forschungsfragen}
+\begin{itemize}[leftmargin=*]
+    \setlength\itemsep{0.05em}
+    \item \textit{Mit welchen Methoden wird das Surfverhalten von Nutzerinnen und Nutzern verfolgt?}
+    \item \textit{Was sind Implikationen der genannten Methoden? }
+\end{itemize}
+
+\subsubsection{Forschungsstand}
+Die vorhandene Literatur zu \gls{webtracking}-Methoden/-Techniken ist wie bereits gezeigt sehr zahl- und umfangreich, darunter befindet sich jedoch nur ein verhältnismässig kleiner Anteil an Arbeiten, die einen Überblick über die Gesamtheit der Trackingverfahren zu schaffen versucht. Insbesondere \citeauthor{Bujlow2017} (\citeyear{Bujlow2017}) hat sich zwecks der Erforschung existierender Ansätze als sehr wertvoll herausgestellt und wird dementsprechend einen fundamentalen Beitrag zur Beantwortung der Forschungsfrage dienen.
+
+Prototyping scheint im Zusammenhang mit \gls{webtracking}-Methoden/-Techniken eine oft anzutreffenden wissenschaftlich-methodischen Ansatz darzustellen; solche Arbeiten sind zwecks der Beantwortung der Forschungsfrage oft auch nützlich, da sie potentiell völlig neuartige Trackingtechniken (wie bspw. \parencite[]{solomos2021tales}) ausarbeiten, welche entweder bisher nicht existiert haben oder immerhin keine Beschreibung im wissenschaftlichen Kontext vorliegt.
+
+Es fällt mitunter auf, dass die Begriffe Methode, Technik und Verfahren (engl. \textit{method, technique, procedure/process}) in der Mehrzahl der Studien in synonymer Weise verwendet werden. Dieser Einsatz der genannten Begriffe ist nicht \textit{per se} falsch, aber der damit einhergehende Verlust an sprachlicher Wiedergabetreue hat einen Einfluss auf die Informationsdichte und Stimmigkeit von deskriptiven Texten.
+\vspace{-3mm}
+\subsubsection{Ansatzpunkt eigener Forschung}
+In Bezug auf die Methoden von Webtracking gibt es die Möglichkeit weiterführender Forschung durch eine fortgeführte Aggregation beschriebener Ansätze zu betreiben, sowie diese Ansätze nach einer vorhandenen Klassifikations- oder Typologisierungsmethode einzuordnen und falls notwendig Vorschläge für eine erweiterte Klassifikation/Typologie zu präsentieren. \\ 
+\vfill\null \columnbreak
+% ------------------------------------------------------------------
+\subsection[Webtracking: Gegenmassnahmen]{\gls{webtracking}: \\ Gegenmassnahmen}
+\subsubsection{Assoziierte Forschungsfragen}
+\begin{itemize}[leftmargin=*]
+    \setlength\itemsep{0.05em}
+    \item \textit{Welche Gegenmassnahmen können Nutzerinnen und Nutzer ergreifen?}
+    \item \textit{Was sind Implikationen der genannten Gegenmassnahmen?}
+\end{itemize}
+
+\subsubsection{Forschungsstand}
+Bezogen auf die möglichen Gegenmassnahmen, welche clientseitig - also durch Nutzerinnen oder Nutzer - ergriffen werden können, hat es nur verhältnismässig wenig Literatur, die Resultate der ersten Literaturrecherche  (Kap. \ref{sec:state_ot_art}, S. \pageref{fig:Suchbegriffe_Entwicklung_WTC)}) verdeutlichen dies. Prototyping und Querschnittsanalysen sind auch hier populäre Methoden und werden oft zusammen eingesetzt um die Performanz von Einzelverfahren zu evaluieren. In diesem Gebiet scheint jedoch ein Mangel an Typologien/Klassifikationen zu bestehen, die Gegenmassnahmen werden oft auf der Implementationsebene besprochen und hinsichtlich prädefinierter Trackingmethoden evaluiert, Einordnungen in Klassen beschränken sich tendenziell auf wenige untersuchte Werkzeuge.
+
+Es besteht ein genereller Konsens besteht bezüglich der limitierten Effektivität von Gegenmassnahmen: durch die zunehmende Weiterentwicklung im Bereich des Tracking ist es schwierig für reguläre Nutzerinnen und Nutzer sich davor zu schützen \parencite[S.31]{Bujlow2017}, Browser Extensions übersehen mind. 25\% der Tracker \parencite[S.48]{fouad2021detection} und Fingerprinting entwickelt sich rasant weiter um sowohl Gegenmassnahmen auf der Nutzerseite, als auch in den Browserimplementationen weiterhin zu umgehen \parencite[passim]{al2020too}.
+\vspace{-3mm}
+\subsubsection{Ansatzpunkt eigener Forschung}
+Der Forschungsstand hinsichtlich möglicher Gegenmassnahmen, die Nutzerinnen und Nutzer gegen Webtracking ergreifen können, scheint von Einzelszenarien (Prototyping-Arbeiten) und Studien mit geringer Anzahl solcher zu untersuchenden Verteidigungsansätzen geprägt zu sein. Es wurde keine umfassende Typologie/Klassifikation gefunden, was mitunter dem Umstand geschuldet sein könnte, dass es eine sehr hohe Anzahl an Tools gibt, welche auf einer Vielzahl von Ansätzen aufbaut. In dieser Arbeit soll ein Überblick über bestehende Arbeiten in diesem Gebiet geschaffen werden.
+% ------------------------------------------------------------------
+\subsection[Webtracking: Auswirkungen der GDPR]{\gls{webtracking}: \\ Auswirkungen der \acrshort{dsgvo}}
+% ----------------------------
+\subsubsection{Assoziierte Forschungsfrage}
+\begin{itemize}[leftmargin=*]
+    \setlength\itemsep{0.05em}
+    \item \textit{Wie wirkt sich die \acrshort{dsgvo} auf die Methoden zur Überwachung von Nutzerinnen und Nutzern aus?}
+\end{itemize}
+
+\subsubsection{Forschungsstand}
+Die Erforschung der Auswirkungen der \acrshort{dsgvo} auf \gls{webtracking} generiert bisher verhältnismässig wenig wissenschaftliche Literatur; auch macht sich hier die Multidisziplinarität der Thematik durch unterschiedliche Schwerpunkte und Betrachungswinkel bemerkbar. Längsschnittanalysen wären hier besonders aussagekräftig, da diese die Veränderung einer Messgrösse über die Zeit mit einer stabilen und repräsentativ gewählten Stichprobe wiedergeben können. Solche Studien existieren (bspw. \citeauthor{sakamoto2019after} \citeyear{sakamoto2019after}), sind aber selten, oft zu klein angelegt (Stichprobe/betrachtete Verfahren) oder betrachten einen zu kurzen Zeitraum um daraus repräsentative Schlüsse für die Grundgesamtheit abzuleiten. \citeauthor{kretschmer2021cookie} (\citeyear{kretschmer2021cookie}) haben bereits an der Beantwortung dieser Forschungsfrage gearbeitet und waren vorsichtig Schlüsse zu ziehen, da z.B. Abbau von \textit{cookies} mit Aufbau von Fingerprinting einhergehen kann und so Studien mit engem Fokus verwirrende Ergebnisse liefern können.
+
+Insgesamt scheint ein Konsens darüber zu bestehen, dass die \acrshort{dsgvo} zusammen mit der \gls{eprivacy} einen messbaren und signifikanten Einfluss auf die Webtracking-Praxis gehabt hat, aber auch, dass nach wie vor eine hohe Rate an nicht-konformem Einsatz dieser Mittel beobachtbar ist. Auch der vermehrte Einsatz von \textit{dark patterns} \parencite[]{gray2021dark} und das Aufkommen von \textit{Consent Management Platforms} (CMP) wurde untersucht \parencite[]{hils2020measuring}.
+\vspace{-3mm}
+\subsubsection{Ansatzpunkt eigener Forschung}
+Aufgrund der Anzahl der Gesichtspunkte unter welchen man die Auswirkungen der \acrshort{dsgvo} betrachten kann und dem Umstand, dass die Menge an Literatur verhältnismässig überschaubar ist, gibt es hier zahlreiche Ansatzpunkte für weiterführende Forschung. Im Kontext dieser Arbeit wird dies vor allem die Zusammenfassung bisheriger Forschung, sowie deren gegenseitige Gegenüberstellung bedeuten.
+\newpage
+% ------------------------------------------------------------------
+\end{multicols*}
+\newpage
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% IDEAS AND CONCEPTS
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\begin{multicols}{2}
+\section{Ideen und Konzepte} \label{sec:ideas_n_concepts}
+In diesem Kapitel werden eigene Ideen und Konzepte präsentiert.
+
+\subsection{Definitionen}
+\subsubsection{Begriffe} \label{begriffsdefinitionen}
+Um bestehende Typologien/Klassifikationen des Webtracking zu erweitern, ist es notwendig sich zuerst auf ein gemeinsames Vokabular zu einigen. 
+Bis zu diesem Punkt wurden die Begriffe Methode, Technik und Verfahren mehr oder weniger synonym gebraucht; ähnlich verhält es sich auch in weiten Teilen der untersuchten wissenschaftlichen Literatur, auch dort wurden die Begriffe mehrheitlich mit austauschbarer Bedeutung angewandt. 
+\begin{itemize}[leftmargin=*]
+        \setlength\itemsep{0.2em}
+    \item \textbf{Ansätze} bezeichnen Wege/Arten/Richt- ungen um ein Problem, basierend auf einer Menge von Annahmen, anzugehen. \parencite[S.551]{andiappan2020distinguishing} Spezifisch im Kontext des Webtracking bezeichnen wir damit die Ansätze \enquote{stateless tracking} und \enquote{stateful tracking}.
+    
+    \item \textbf{Klasse} beschreibt eine Menge von Trackingmethoden, welche sich durch gemeinsame Merkmale einer Gruppe zuordnen lassen und kann auch als eine Ansammlung vergleichbarer Methoden aufgefasst werden. Im Rahmen dieser Arbeit verwenden wir diesen Begriff, um eine Zugehörigkeit zu einer übergeordneten Gruppe von Methoden auszudrücken, wie bspw. im Falle von \enquote{Fingerprinting} und seiner Methoden \enquote{Browser Fingerprinting}, \enquote{Device Fingerprinting} und weitere.
+    
+    \item \textbf{Methoden} spezifizieren wie Ansätze praktisch implementiert werden und umfassen wie Probleme gelöst werden. \parencite[S.552]{andiappan2020distinguishing} Im Rahmen dieser Arbeit wird dieser Begriff als Spezifizierung einer Klasse verstanden, dazu gehören Begriffe wie beispielsweise die Begriffe \enquote{Browser Fingerprinting} und \enquote{Canvas Fingerprinting} sich der Klasse \enquote{Fingerprinting} unterordnen. 
+    
+    \item \textbf{Verfahren}
+    Eine Prozedur bezeichnet eine Sequenz von Techniken oder Aktionen in einer festgelegten Reihenfolge und kann beispielsweise durch Entwickler festgelegt oder in Form von bereits existierenden Algorithmen daherkommen. \parencite[S.552]{andiappan2020distinguishing}. Ein Beispiel für ein Verfahren wäre bspw. die Anwendung verschiedener Fingerprinting Techniken, Konkatenation dieser Werte in einem String und darauffolgende Anwendung einer Hashfunktion. 
+    
+    \item \textbf{Technik}
+    Eine Technik bezeichnet eine unmittelbare Aktion, welche ein unmittelbares Resultat zurückliefert. \parencite[]{hofler1983approach} Dies bezeichnet innerhalb dieser Arbeit Tätigkeiten, wie bspw. beim Browser Fingerprinting das Sammeln von Browserattributen.
+\end{itemize}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{images/3_ideas_concepts/begriffe.PNG}
+ \captionof{figure}{Verdeutlichende Grafik zur Spannweite der definierten Begriffe. \textit{Anm.: adaptiert} \parencite[S.552]{andiappan2020distinguishing}}
+ \label{fig:scopebegriff)}
+\end{figure}
+
+\subsubsection{Legalitätsbereiche}
+Bei der Beurteilung der Legalität des Einsatzes von Trackingmitteln gibt es drei mögliche Ausgänge, welche sich sinngemäss gegenseitig ausschliessen:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Weisser Bereich}
+    Der weisse Bereich umfasst den legalen Einsatz von Trackingmitteln. Ein Beispiel wäre hier das, durch die Zustimmung der Nutzerin oder des Nutzers legitimierte, Sammeln von Daten zu Werbezwecken.
+    
+    \item \textbf{Grauer Bereich}
+    Der graue Bereich umfasst denjenigen Einsatz von Trackingmitteln, welcher (bspw. aufgrund eines Mangel an Präzedenzfällen) sich nicht eindutig als legal oder illegal einordnen lässt. In diesem Bereich halblegaler Machenschaften finden sich beispielsweise sogenannte \textit{\gls{darkpattern}}.
+    
+    \item \textbf{Schwarzer Bereich}
+    Der schwarze Bereich umfasst den illegalen Einsatz von Trackingmitteln. Als Beispiel lässt sich hier das, \underline{nicht} durch die Zustimmung der Nutzerin oder des Nutzers legitimierte, Sammeln von Daten zu Werbezwecken.
+\end{itemize}
+
+\subsubsection{Scopes}
+Der Begriff \textit{\gls{scope}} kommt aus dem Englischen und wird als \enquote{Geltungsbereich} oder \enquote{Reichweite} übersetzt. Im Kontext des Webtracking wird unter \textit{\gls{scope}} die Grenze der Verhaltensbeobachtung verstanden. Das grösste beobachtbare \textit{\gls{scope}} ist hierbei jeweils dasjenige, welches für den Untersuchungsgegenstand charakteristisch ist, da weiter gefasste \textit{\gls{scope}s} enger gefasste \textit{\gls{scope}s} enthalten.
+
+Es werden können jeweils zwei Dimensionen von \textit{\gls{scope}s} unterschieden werden: zeitlich und räumlich. Das zeitliche \textit{\gls{scope}} beschreibt den möglichen Zeitraum der Beobachtung, während das räumliche \textit{\gls{scope}} die Verfügbarkeit der assoziierten Ressource aus unterschiedlichen Betrachtungswinkeln beschreibt. \\
+
+\noindent \underline{\textbf{Zeitliche \gls{scope}s}}
+\begin{itemize}
+    \item \textbf{Session-only \gls{scope}} zeichnet sich dadurch aus, dass Tracking nur innerhalb der offenen Session möglich ist.
+    \item \textbf{Cross-Session \gls{scope}} erlaubt im Gegensatz zu \textit{Session-only \gls{scope}} eine Assoziation mehrerer Sessions untereinander und ermöglicht so die Beobachtung über mehrere Sessions hinweg.
+\end{itemize}
+\vspace{3mm}
+\underline{\textbf{Räumliche \gls{scope}s}}
+\begin{itemize}
+    \item \textbf{Within-site \gls{scope}} lässt nur Tracking innerhalb derselben \gls{domain} zu.
+    \item \textbf{Cross-site \gls{scope}} lässt Tracking über mehrere Domains hinweg zu.
+    \item \textbf{Application/Browser \gls{scope}} bezeichnet ein \textit{Cross-session \gls{scope}}, welches nicht durch Zugriffsisolation für die besuchte \gls{domain} limitiert wird, sondern auch für andere \gls{domain}s lesbar ist.
+    \item \textbf{Cross-browser/Device \gls{scope}} ist die Verfügbarkeit von Trackingdaten über Browser, bzw Applikationen, hinweg. Hier müssen Trackingdaten ausserhalb der Applikation und in für andere Applikationen verfügbarer Weise zugreifbar gemacht werden.
+    \item \textbf{Cross-device \gls{scope}} bezeichnet den am weitesten gefassten räumlichen Geltungsbereich, welcher Tracking über Geräte hinweg ermöglicht.
+\end{itemize}
+
+\newpage
+\end{multicols}
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% METHODS
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\begin{multicols*}{2}
+\section{Methoden} \label{sec:methods}
+\label{lesezeichen_methoden}
+% Um eine möglichst grosse Menge an relevanter Literatur sichten zu können, wird systematisch nach englischsprachiger Forschungsliteratur gesucht.
+% check publish or perish from harzing for h-index and metrics
+% ------------------------------------------------------------------
+\subsection{Literaturarbeit}
+Es handelt sich beim vorliegenden Dokument um eine Literaturarbeit. Dementsprechend stützen sich die Inhalte dieses Dokuments auf bereits vorhandene Forschungsliteratur. 
+\subsubsection{Systematische Literaturrecherche}
+Die Auswahl der zu bearbeitenden Forschungsliteratur findet in einer ersten systematischen Literaturrecherche statt; hierbei wird in einem ersten Schritt nach verschiedenen Konstellationen folgender Begriffe gesucht: 
+\begin{itemize}
+    \setlength\itemsep{0.3em}
+    \item \enquote{Webtracking}
+    \item \enquote{Methoden}
+    \item \enquote{Gegenmassnahmen}
+    \item \enquote{Auswirkungen}
+\end{itemize}
+Um möglichst zahlreiche Resultate zu erhalten, verwenden wir die korrespondierenden Begriffe aus dem Englischen (\enquote{web tracking}, \enquote{methods}, \enquote{countermeasures}, \enquote{impact}) und substituieren einige davon mit dazu synonymen oder semantisch nahen Begriffen:
+
+\begin{itemize}
+    \setlength\itemsep{0.3em}
+    \item \enquote{web tracking}: \textit{behavioural tracking}
+    \item \enquote{methods}: \textit{techniques}, \textit{procedures}
+    \item \enquote{countermeasures}: \textit{defenses}, \textit{protection}
+    \item \enquote{impact}:\textit{effect}, \textit{influence}, \textit{consequences}
+\end{itemize}
+
+Bei der Suche nach Kombinationen dieser Begriffe gab es Millionen von Resultaten, welche nach einer definierten Vorgehensweise selektioniert werden mussten:
+\begin{itemize}
+    \setlength\itemsep{0.3em}
+    \item In einem ersten Schritt wurde eine Auswahl an Arbeiten mit relevanten Titeln bestimmt. Dies wird zu einem hohen Grad durch \textit{Google Scholar} selbst bewerkstelligt, da generell relevantere Resultate höher gewertet und dementsprechend zuerst angezeigt werden.
+    \item Danach wurden die Arbeiten, welche es in die Vorauswahl geschafft hatten, hinsichtlich ihres Publikationsjahres auf deren Verwertbarkeit untersucht. Hierbei ergeben sich unterschiedliche Massstäbe, da Beschreibungen von älteren Träckingmethoden heute noch relevant sein können, während dies bei Gegenmassnahmen tendenziell weniger der Fall ist.
+    \item In Zweifelsfällen wurden h-/i10-Indexe der Autoren beigezogen um die Wichtigkeit einer Arbeit abschätzen zu können - dabei war auffällig, dass teilweise Autoren äusserst reichhaltiger Arbeiten trotzdem tiefe Werte aufwiesen. Dies war oft mitunter dem Umstand geschuldet, dass die Autoren erst seit wenigen Jahren Arbeiten publizieren. Insofern war die Anwendung von h-/i10-Indexen lediglich supplementärer Natur, da gerade junge Forschungsarbeiten dabei unter einer Verzerrung zu Ungunsten derer Autoren leiden.
+\end{itemize}
+
+Die dadurch entstehende Auswahl von Arbeiten wurde anzahlsmässig auf 50 reduziert, um so auf einen bearbeitbaren Bestand an Forschungsliteratur zu kommen, und fortlaufend inhaltlich untersucht. Dabei ergaben sich unterschiedliche Ansätze zur Verarbeitung der enthaltenen Informationen:
+\begin{itemize}
+    \setlength\itemsep{0.3em}
+    \item Methoden und Gegenmassnahmen wurden zunehmend aggregiert, sodass eine möglichst umfangreiche Sammlung entsteht, welche Defizite bestehender Klassifikationen/Typologien gegebenenfalls sichtbar machen könnte.
+    \item Hinsichtlich der Auswirkungen der \acrshort{dsgvo} wurde versucht die Untersuchungsgegenstände wissenschaftlicher Arbeiten in einer Art und Weise zu ordnen und organisieren, in welcher sie zur holistischen Beantwortung der Fragen nach den Auswirkungen im Bereich des Webtracking dienlich sein können.
+\end{itemize}
+
+\subsubsection{Schnellballmethode}
+Im Zuge dieser fortlaufenden Auswertung wurde bei wichtigen Aussagen die Schneeballmethode verwendet, es wurde also weitere Literatur in die Auswahl eingepflegt, um den Literaturbestand zwecks der Beantwortung der Forschungsfragen holistischer beantworten zu können.
+
+Diese Herangehensweise wurde besonders im Bereich der Forschungsfrage nach den Auswirkungen der \acrshort{dsgvo} oft verwendet, da anfänglich nur wenig (für die Forschungsfragen relevante) Literatur in diesem Bereich gefunden wurde, diese aber jeweils reichhaltige Verweise auf andere Arbeiten enthielt. 
+\newpage
+% ------------------------------------------------------------------
+\subsection{Experteninterviews}
+Im Rahmen dieser Arbeit wurden drei qualitative Interviews mit Fachexperten durchgeführt. Als Interviewform wurde das semistrukturierte Interview gewählt, da die Experten so Raum haben frei zu erzählen, aber dem Interviewer auch die Möglichkeit gegeben wird, das Gespräch wieder zwischen die thematischen Leitplanken zu lenken. 
+
+Zwecks der Durchführung dieser Interviews wird für jeden Experten ein eigener Interviewleitfaden ausgearbeitet (siehe Anhang \ref{appendix:Leitfaden}, S. \pageref{appendix:Leitfaden}). In diesem Zusammenhang scheint erwähnenswert, dass die Interviewleitfäden so ausgelegt sind, dass sie genügend Fragen für ein etwa 30-40 minütiges Interview enthalten; es wird aber die Möglichkeit offen gehalten Fragen zurückzuhalten um das Interview nicht in die Länge zu ziehen. 
+
+Aufgrund der, zur Zeit der Erstellung dieser Arbeit anhaltenden, epidemisch angespannten Lage werden alle Interviews \textit{remote} durchgeführt, dabei eine Aufnahme als Video- oder Audiodatei erstellt, welche danach zu einem einfachen Transkript verarbeitet wird und die Video-/Audiodaten fachgerecht gelöscht werden. Da auch Applikationen Implikationen im Hinblick auf die Wahrung der Privatssphäre haben, wird jedem Interviewpartner die Möglichkeit gegeben, das zur Durchführung der Session verwendete Programm selbst auszuwählen. 
+Es folgen kurze Steckbriefe der interviewten Fachexperten:
+\begin{itemize}
+    % ------------------------------ GEPPERT below
+    
+    \item \textbf{Andreas Geppert} ist Doktor der Informatik und arbeitet seit über fünf Jahren als Datenplattformarchitekt im Auftrag der \textit{SwissRe}. Er engagiert sich für die Bewahrung der Privätssphäre in einer digitalisierten Gesellschaft. Weiterführende Informationen: 
+    \vspace{-1mm}
+    \begin{itemize}[leftmargin=*]
+        \setlength\itemsep{0.5em}
+        \item Dr. Geppert war über 18 Jahre als externer Dozent für die Kurse \textit{Data Warehousing}, \textit{Data Systems Lab} und \textit{Database Management System Architecture} für die \textit{Universität Zürich} (UZH) tätig (2002-2020).
+        \item Dr. Geppert war über 14 Jahre bei \textit{Credit Suisse} als \textit{Senior Platform Architect} und zeitweise auch als \textit{Data Warehouse Platform Security Architecture Lead} angestellt (2001-2016).
+        \item Dr. Geppert war über drei Jahre in der Forschung aktiv (1998-2001).
+    \end{itemize}
+    % ------------------------------ STEIGER below
+    \item \textbf{Martin Steiger} ist Anwalt für Recht im digitalen Raum (Datenschutz-, Immaterialgüter-, IT- und Medienrecht), Sprecher der digitalen Gesellschaft und setzt sich für die Freiheit im Internet ein. Weiterführende Informationen:
+    \vspace{-1mm}
+    \begin{itemize}[leftmargin=*]
+        \setlength\itemsep{0.5em}
+        \item Herr Steiger führt seit über 13 Jahren seine eigene Anwaltskanzlei für Recht im digitalen Raum (2008 ff.).
+        \item Herr Steiger ist Geschäftsführer und Mitgründer sowohl der \textit{Papiertiger GmbH}, welche eine Online-Vertragsplattform betreibt (2015 ff.), als auch von \textit{VGS Datenschutzpartner UG } (2018 ff.).
+        \item Herr Steiger ist seit über vier Jahren als Dozent am \textit{Schweizerischen Institut für Betriebsökonomie} (SIB) tätig (2017 ff.) und dozierte schon zuvor zweieinhalb Jahre an der \textit{Hochschule für Wirtschaft} (HWZ) (2016-2018).
+        \item Herr Steiger gehört zum Beratungsausschuss beim \textit{Centre for Digital Responsibility} (CDR) (2018 ff.).
+    \end{itemize}
+    % ------------------------------ DELBROUCK below
+    \item \textbf{Thorsten Delbrouck} ist seit zwei Jahren Vizepräsident der \textit{Giesecke+Devrient}-Gruppe (2020 ff.), bei der er zuvor schon neun Jahre als \textit{CISO} tätig war (2011-2019).
+    \vspace{-1mm}
+    \begin{itemize}[leftmargin=*]
+        \setlength\itemsep{0.5em}
+        \item Herr Delbrouk ist ebenfalls stellvertretender Vorsitzender des \textit{Information Security Forum} (2017 ff.), einer \textit{not-for-profit} Organisation, welche sich der Erforschung von Schlüsselthemen im Bereich von Informationssicherheit und Riskmanagement veschrieben hat und in diesen Bereichen \textit{best practices} herausarbeitet.
+        \item Herr Delbrouck ist im \textit{Arbeitskreis Cybersicherheit und Wirtschaftsschutz} beim \textit{Bundesverband der Deutschen Industrie} (2018 ff.).
+        \item Herr Delbrouck war zuvor schon über vier Jahre \textit{Head of IT Security Consulting} bei \textit{Comline AG} (2006-2010), drei Jahre \acrshort{ciso} bei \textit{Infineon Technologies AG} (2003-2006), zwei Jahre \acrshort{cio} bei \textit{Guardeonic Solutions AG} (2001-2003) und drei Jahre als \textit{Head of Technical IT Security} (1998-2001) bei \textit{TÜV Secure IT.}
+    \end{itemize}
+\end{itemize}
+\end{multicols*}
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% REALIZATION
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\begin{multicols*}{2}
+\section{Realisierung} \label{sec:realization} \label{lesezeichen_tech_vers_leser}
+\subsection{Webtracking: Methoden und Techniken}
+Wir wenden uns nun der Enumerierung und Klassifizierung der Ansätze, Klassen, Methoden und Techniken des Webtracking zu. In Kap \ref{begriffsdefinitionen} finden sich die Definitionen für die hier verwendeten Begriffe. Technische Fachbegriffe werden soweit möglich in ihrer Originalsprache belassen, da im Bereich der Informationssicherheit ein Zurückfallen auf national gebräuchliche Begriffe lediglich die Kommunikation erschwert.
+% ----------------------------------------------------------------------------------------
+% STATEFUL TRACKING
+% ----------------------------------------------------------------------------------------
+\subsubsection{Stateful Tracking}
+\textit{Stateful tracking} beschreibt einen Trackingansatz, bei welchem vom Speicher des Clients Gebrauch gemacht wird. Dies umfasst Persistenzmechanismen wie \textit{cookies}, in Browser integrierte Speicher und Datenbanksysteme (bspw. IndexedDB), aber auch Speicher, welche extern zur verwendeten Applikation sind (bspw. Flash LSOs) sind und ferner auch formularbasierte Verfahren, deren \textit{state} innerhalb des Quellcodes der Webseite abgelegt wird. 
+\subsubsubsection{Klasse: session-only}
+% METHODS - SESSION-ONLY -----------------------------------------------------------------
+In diesem Unterabschnitt wird die Klasse von Webtrackingmethoden untersucht, welche durch ein \textit{within-site} und \textit{session-only scope} charakterisierbar sind. Es handelt sich dabei um historische Methoden, da deren Verwendung heutzutage zwar nicht ausgeschlossen werden kann, aber sie durch die Entwicklung mächtigerer Methoden weitgehend funktionell obsolet und abgelöst worden sind. Die, unter dieser Klasse zusammengefassten, Methoden sind ziemlich simpel und stellen keine signifikante Gefahr für Nutzerinnen und Nutzer dar \parencite[S.4]{Bujlow2017}.
+Auf Grund der beschränkten Geltungsbereiche der hier angesiedelten Methoden ist ihr Einsatz, mit Ausnahme der für \textit{cookie syncing} weiterverwertbaren Daten des \textit{explicit web-form authentication}, nur für \textit{within-site} Tracking nützlich.
+
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: Web-Forms}} \mbox{} \vspace{2mm} \\
+Über Webformulare können Trackingdaten übermittelt werden, diese Methode hat jedoch weitgehend ausgedient und ist nur noch aus historischer Perspektive für Webtracking relevant.
+\vfill\null \columnbreak
+
+\subparagraph{Session identifiers in hidden fields}
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{session-only} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{site-only} \\
+
+\noindent \textbf{Beschreibung} \\ 
+\noindent \textit{Session identifiers in hidden fields} stellen einen veralteten Trackingmethode dar, bei welchem eine \gls{gls-uid} (UID) für den entsprechenden \textit{client} der Webseite vergeben und dieser Wert im Quellcode der Webseite, in einem für die Besucher unsichtbaren Feld, zwischengespeichert wird. 
+Dieser Wert wird darauffolgend an alle weiteren, durch Interagieren mit der Webseite verursachten, \textit{HTTP requests} angehängt und kann so vom Server wieder ausgelesen werden und so zugeordnet werden. 
+
+Sowohl \texttt{GET}-, als auch \texttt{POST}-\textit{Requests} können diesen Mechanismus nutzen, erstere hängen dazu die \acrshort{uid} an die \textit{\acrshort{url}} an und bleiben so im Browserverlauf erhalten, während letztere ihn als Formular im \texttt{body} des \textit{request} einbetten und so nicht weiter clientseitig persistiert werden \parencite[S.4]{Bujlow2017}.
+
+\vspace{3mm} \noindent \textbf{Verbreitung} \\
+Durch die Einführung von \textit{cookies} im Jahr 1994 ist die Verwendung von \textit{hidden fields} weitgehend funktionell obsolet geworden: der Mechanismus existiert weiterhin und obwohl er erlaubt \acrshort{uid}s an Dritte weiterzugeben, ohne die Präsenz einer clientseitigen Laufzeitumgebung vorauszusetzen, ist er aufgrund des eingeschränkten \textit{session-only \gls{scope}} für Trackingzwecke nur noch beschränkt von Interesse \parencite[S.4]{Bujlow2017}.
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+Ausschliesslich \citeauthor{Bujlow2017} (\citeyear{Bujlow2017}) haben diese Technik erwähnt. Die limitierten \textit{\gls{scope}s} machen die Methode für Webtracking, angesichts aktueller Möglichkeiten, wenig attraktiv. Die Technik wird jedoch weiterhin dazu verwendet um \textit{cross-site request forgery} erkennen zu können \parencite[]{SymfonySAS}, dies steht jedoch nicht im Zusammenhang mit Webtracking und ist entsprechend nicht Gegenstand der Untersuchung.
+
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+\subparagraph{Explicit web-form authentication}
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{session-only} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{site-only} \\ 
+
+\noindent \textbf{Beschreibung} \\ \noindent
+\textit{Explicit web-form authentication} bezeichnet eine auf Web-Formularen aufbauende Authentisierungsmethode, welche mitunter zu Trackingzwecken genutzt werden kann. Dabei wird zur Nutzung eines Services eine Registrierung der Nutzerin oder des Nutzers vorausgesetzt, welche/welcher bei jeder Nutzungssession sich über seine \acrshort{uid} (z.B. E-Mailadresse oder Nutzername) und das dazugehörige Passwort beim entsprechenden Serviceanbieter authentisiert.
+
+Dieser Verfahren ist einfach, akkurat und hat keine Voraussetzungen bezüglich Browser, Betriebssystem oder Computer, welche für den Zugriff benutzt werden und auch nicht an den geographischem Standort an welchem sich die Nutzerin oder der Nutzer befindet; hat aber lediglich einen \textit{Session-only \gls{scope}} und setzt so für jede \textit{session} eine Authentisierung voraus und verunmöglicht dabei transparentes \gls{webtracking} \parencite[S.4]{Bujlow2017}.
+
+Ein Nebeneffekt des Umstands, dass oft die E-Mailadresse als \acrshort{uid} verwendet wird, ist hier natürlich, dass diese dem Serviceanbieter dann bekannt ist und er sie gegebenenfalls für seine Zwecke weiterverwendet.
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+\textit{Explicit web-form authentication} ist nach wie vor eine Option zur Umsetzung einfacher Authentisierung- und Trackingmechanismen, ist aber hinsichtlich des beobachtbaren \textit{\gls{scope}s} nicht mehr sonderlich attraktiv. Auch dürften \textit{disposable email address services} (bspw.: TempMail) dazu beigetragen haben, dass die Verlässlichkeit der Legitimität einer registrierten Adresse nicht mehr gegeben ist.
+
+ \vspace{3mm} \noindent \textbf{Tracking} \\
+Innerhalb der untersuchten Literatur erwähnen nur \citeauthor{Bujlow2017} (\citeyear{Bujlow2017}) diese Methode. Erwähnenswert erscheint, dass falls zur Registrierung ein eindeutiger Identifikator wie bspw. eine E-Mailadresse verwendet wurde, über diesen ein \textit{Syncing} der Daten mit Dritten, welche diese E-Mail ebenfalls in ihrem Bestand verzeichnet haben, möglich ist.
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+\newpage
+\paragraph{\underline{Methode: Browser properties}} \mbox{} \vspace{2mm} \\
+Trackingdaten konnten früher über Datenfelder des Browsers kurzzeitig persistiert und innerhalb desselben Tab zwischen unterschiedlichen \gls{domain}s ausgetauscht werden. 
+ \subparagraph{DOM-property: window.name} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{session-only}\\ \null \qquad \qquad (\textbf{räuml.}) \texttt{site-only} (nur Tab)\\  
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+Das \textit{Document Object Model} (DOM) ist eine platformunabhängige und sprachagnostische Schnittstelle, welche Zugriffe und Interaktionen mit dem Inhalt, der Struktur und der Gestaltung von Webdokumenten (HTML, XML, XHTML) ermöglicht. Das \acrshort{dom} bildet das Webdokument als Baumstruktur von Objekten ab, welche wiederum Teile des Dokuments repräsentieren. 
+
+Das \texttt{window.name} Datenfeld kann bis 2 MB Daten als \textit{\gls{string}} innerhalb des Browsers ablegen, überlebt ein Neuladen derselben Webseite und war früher auch für \textit{\gls{domain}s} lesbar, zu welchen die Nutzerin oder der Nutzer innerhalb desselben Tabs weitergeleitet wurde \parencite[S.6]{Bujlow2017}. 
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+Obwohl \texttt{window.name} nach wie vor in modernen Browsern präsent ist und teilweise von Frameworks für \textit{cross-domain messaging} verwendet wird, hat sich die Behandlung dieses Datenfelds seitens der Browsers verändert: das Feld wird beim Laden einer \gls{domain}, welche von der aktuellen Webseite abweicht, zurückgesetzt. \parencite[]{MozillaCorporation2021} Insofern ist folglich die Nutzung des \texttt{window.name}-Felds zu Trackingzwecken so nicht mehr möglich und das Verfahren obsolet.
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+Innerhalb der untersuchten Literatur haben \citeauthor{Bujlow2017} (\citeyear{Bujlow2017}) diese Technik erstmals referenziert. \citeauthor{castell2021tracksign} (\citeyear{castell2021tracksign}) haben experimentell durch Analyse historischer Daten des \textit{Internet Archive} den Einsatz dieser Technik erstmals in 2012 und zum letzten Mal in 2015 beobachtet. \citeauthor{fouad2021detection} (\citeyear{fouad2021detection}) haben noch in 2020 Javascript-Aufrufe detektiert, welche dieses Feld nutzen, da es jedoch innerhalb derselben Domain zum Austausch von Daten dienen kann, ist es unklar ob es zu Trackingzwecken (\textit{within-site} in populären Browsern oder \textit{cross-site} in exotischen Browsern) eingesetzt wurde.
+\newpage
+% METHODS STORAGE-BASED ------------------------------------------------------------------
+\subsubsubsection{Klasse: Storage-based}
+% ----------------------------------------------------------------------------------------
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: Application-internal storage}} \mbox{} \vspace{2mm} \\
+ \subparagraph{HTML5 Global, Local und Session Storage} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\  
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{HTTP Cookies} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{cross-session} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{cross-site} \\ 
+\\ \noindent \textbf{Beschreibung} \\
+\textit{Cookies} stellen, vor allem im Raum der \acrshort{eu}, wohl den bekanntesten Vertreter unter den Trackingtechniken dar. Im Jahr 1997 wurden \textit{cookies} erstmals in RFC2109 spezifiziert und darin primär als Möglichkeit zur Erstellung einer \textit{stateful session} über \textit{HTTP-requests} und \textit{-responses} beschrieben. \textit{Cookies} können auf drei verschiedene Arten kategorisiert werden \parencite[]{Koch2019}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Verwendungszweck} \ \\ \vspace{-5.5mm}
+        \begin{itemize}[leftmargin=*]
+            \item \textbf{Session Management}:
+            Logins, Einkaufswagen, Spielstände oder weitere Daten, welche der Server für die Bereitstellung seiner Dienste benötigt
+    
+            \item \textbf{Personalisierung}:
+            Nutzereinstellungen, Themes und weitere Einstellungen
+    
+            \item \textbf{Tracking}:
+            Festhalten und Analyse von Nutzungsverhalten
+        \end{itemize}
+    \item \textbf{Herkunft} \ \\ \vspace{-5.5mm}
+        \begin{figure}[H]
+            \centering
+            \setlength{\belowcaptionskip}{-7pt}
+            \includegraphics[width=\linewidth]{images/5_realization/methods/http_cookies/web_cookies_1st_3rd_party.png}
+            \captionof{figure}{Herkunft von Cookies \parencite[]{Nozaki2021}}
+            \label{fig:cookie_1st_3rd_party)}
+        \end{figure}
+        \begin{itemize}[leftmargin=*]
+            \item \textbf{First-party cookies} werden durch die besuchte Webseite gesetzt (\texttt{within-site} \textit{scope}).
+            \item \textbf{Third-party cookies} werden von einer anderen Webseite (Drittpartei) gesetzt (\texttt{cross-site} \textit{scope}).
+        \end{itemize}
+    \item \textbf{Lebensdauer} \ \\ \vspace{-5.5mm}
+        \begin{itemize}[leftmargin=*]
+            \item \textbf{Session cookies} sind kurzlebig und werden beim Schliessen des Browsers/der Session gelöscht.
+            \item \textbf{Persistent cookies} bezeichnen \textit{cookies}, welche ein im Vornherein gesetztes Ablaufdatum enthalten. Gemäss der \acrshort{eprivacy} sollten diese nach spätestens 12 Monaten gelöscht werden, in der Praxis können sie jedoch jahrzehntelang gültig bleiben solange die Nutzerin/der Nutzer sie nicht entfernt. 
+        \end{itemize}
+\end{itemize}
+
+Der mit \textit{cookies} erreichbare \textit{\gls{scope}} erstreckt sich aber tatsächlich über restriktivere Definitionen des Begriffs \textit{session} hinaus, da sowohl die \textit{lifetime} eines \textit{cookies} explizit vom Server definiert werden kann, als auch inkonsistente Handhabung sogenannter \textit{session cookies} (\textit{cookies} mit einer \textit{lifetime} von 0) seitens der Browser dazu geführt haben, dass die Validitätsdauer von \textit{session cookies} nur unter Berücksichtigung des verwendeten Browsers voraussagbar ist \parencite[]{MozillaCorporation2021a}.
+\begin{figure}[H]
+    \centering
+    \setlength{\belowcaptionskip}{-7pt}
+    \includegraphics[width=\linewidth]{images/5_realization/methods/http_cookies/web_cookies_mechanism.png}
+    \captionof{figure}{HTTP-basierter Cookieaustauschmechanismus \parencite[]{Son2017}}
+    \label{fig:cookie_mechanism}
+\end{figure}
+Typischerweise werden \textit{cookies} durch die Präsenz eines \texttt{Set-Cookie} \textit{headers} innerhalb der \textit{HTTP-response} gesetzt, aber es ist auch möglich sie über JavaScript \acrshort{api}s zu erstellen, manipulieren oder auszulesen. Ist ein \textit{cookie} für eine gewisse \gls{domain} erst einmal hinterlegt, wird es an jeden \textit{HTTP-request} an die entsprechende \gls{domain} angehängt. Um zu modifizieren in welchen Fällen ein \textit{cookie} an ausgehende \textit{HTTP-requests} angehängt wird, gibt es verschiedene Attribute die vom Betreiber der Webseite, bzw. dessen Webentwicklern, entsprechend gesetzt werden können (\texttt{Domain, Path, SameSite, Secure}) um die gewünschte Funktionalität zu erzielen \parencite[]{MozillaCorporation2021a}.
+
+\vspace{3mm} \noindent \textbf{Verbreitung} \\
+ Trotz der zeitlich weit zurückliegenden Einführung im Jahre 1994, sind sie heute noch weit verbreitet und durch Inkrafttreten der \acrshort{dsgvo} und insbesondere der \gls{eprivacy} (alias \textit{Cookie Law}) stärker ins Bewusstsein von Nutzerinnen und Nutzern gerückt als vergleichbare Verfahren. Man kann davon ausgehen, dass beinahe alle Webseiten heutzutage \textit{cookies} zur Befriedigung unterschiedlicher Konstellationen der genannten Verwendungszwecke nutzen; manche Seiten laden gar hunderte von \textit{cookies} \parencite[]{CookiePro2021}.
+ 
+\vspace{3mm} \noindent \textbf{Tracking} \\
+Durch Hinterlegung einer \acrshort{uid} in einem \textit{cookie} kann die Nutzerin oder die Nutzer bei jedem Besuch der Seite problemlos wieder über die im \textit{cookie} angehängte \acrshort{uid} als dieselbe Nutzerin oder derselbe Nutzer erkannt werden. Gemäss \textcite{Bujlow2017} hängen Erfolg und Genauigkeit dieses Verfahrens von diversen Begleitumständen ab, nämlich Szenarien in welchen folgende Bedingungen erfüllt sind:
+\begin{itemize}
+    \vspace{-1mm} \item Der Einsatz von \textit{cookies} wurde erlaubt.
+    \vspace{-1mm} \item Der \textit{cookie cache} wurde zwischenzeitlich nicht geleert.
+    \vspace{-1mm} \item Es wird derselbe Browser, wie beim Setzen des \textit{cookies}, verwendet.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \setlength{\belowcaptionskip}{-7pt}
+    \includegraphics[scale=1.0]{images/5_realization/methods/http_cookies/sanchez-rola_prevalence.png}
+    \captionof{figure}{Punktprävalenz von Cookies \parencite[]{sanchez2019can}}
+    \label{fig:cookie_1st_3rd_party)}
+\end{figure}
+Gemäss einer von \citeauthor{sanchez2019can} (\citeyear{sanchez2019can}) durchgeführten Querschnittsanalyse (2000 Webseiten) setzen etwa 92\% der Webseiten \textit{cookies}, welche Daten enthalten, die hinreichend komplex sind, um als Identifikatoren zu Trackingzwecken verwendet werden zu können. Der Einsatz solch potentieller Trackingcookies lässt sich mehrheitlich bereits vor der Einholung der Zustimmung der/des Nutzerin/Nutzers beobachten und bleibt unbeinflusst durch das Ausbleiben ebendieser.  
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Web SQL DB and HTML5 IndexedDB} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{cross-session} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{cross-site} \\ 
+\\ \noindent \textbf{Beschreibung} \\ 
+%  CROSS SITE ACCESS POSSIBLE
+% BUT MDN HAS SOME SEC FEATURES FOR ISOLATION
+% SEE https://stackoverflow.com/questions/23874290/can-we-use-indexeddb-between-two-pages-on-different-domains
+\noindent Die \textit{Web SQL database} war eine, im Kontext des Browsers eingebettete \acrshort{api}, welche es erlaubte vergleichsweise grosse Mengen strukturierter Daten in einer Datenbank zu speichern und abzufragen. Trotz existierender Implementationen in verbreiteten Browsern (Chrome, Opera und Safari) konnte sie sich aufgrund mangelnder Unabhängigkeit dieser Implementationen (alle \textit{backends} waren SQLite-basiert) längerfristig nicht als Standard durchsetzen \parencite[]{W3CWorkingGroup2010} und wurde, mit Unterstützung der Mozilla Foundation \parencite[]{Ranganathan2010}, weitgehend durch IndexedDB abgelöst.
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+Ungeachtet der erwähnten Ablösung durch IndexedDB wird der Einsatz der \textit{Web SQL database} weiterhin von verschiedenen Browsern unterstützt, welche bis 77\% der genutzten Browser ausmachen; IndexedDB hingegen wird von 98\% der genutzten Browser unterstützt \parencite[]{Deveria2021}.
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+Die Nutzung der HTML5 IndexedDB zu Trackingzwecken wurde wissenschaftlich erstmals 2014 beschrieben, bei welcher die Technologie als ein Persistenzvektor für \textit{evercookies} eingesetzt wurde \parencite[passim]{acar2014web}.
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Internet Explorer userData storage} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+\textit{Internet Explorer userData storage}, auch \textit{userData behaviour}, beschreibt ein Feature der sogenannten \textit{binary behaviours} des Microsoft Internet Explorers. \textit{Binary behaviours} sind Komponenten, welche spezifische Funktionalitäten kapseln und diese den HTML-Elementen, an welche sie angehängt wurden, zur Verfügung stellen \parencite[]{Corporation2019}. Das \textit{userData behaviour} stellt dabei Persistenzfunktionalitäten zur Verfügung, welche die sessionsübergreifende Speicherung von Daten ermöglichen \parencite[]{MicrosoftCorporation2013}.
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+Da es sich bei \textit{binary behaviours} um ein proprietäres Feature des Internet Explorers handelt, welches nicht in anderen Browsern implementiert wurde \parencite[S.14]{verleg2014cache}, ist dessen Verbreitung beschränkt: der Marktanteil von Internet Explorer weltweit wird zwischen 0.61\% \parencite[]{Statcounter2021} bis 1.1\% \parencite[]{W3Counter2021} geschätzt. Angesichts des Umstands, dass Internet Explorer sich am Ende seines Lebenszyklus befindet, darf man auch vom damit verbundenen Verschwinden dieses Vektors ausgehen.
+Der \textit{Internet Explorer userData storage} wurde 2006 mit der Einführung von Internet Explorer 7.0 für obsolet erklärt, existierte und funktionierte jedoch in bisher unbekanntem Masse weit über diesen Zeitraum hinaus \parencite[S. 14]{verleg2014cache}. 
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+
+\newpage
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: Application-external storage}} \mbox{} \vspace{2mm} \\
+ \subparagraph{Flash cookies \& Java JNLP Persistence Service} 
+% main src "A survey on \gls{webtracking}"
+% Roesner et al. showed that cookies can be respawned from the local and Flash storage
+% roesner2012detecting
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Flash LocalConnection object} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Silverlight Isolated Storage} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{cross-session} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{cross-browser} 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+
+
+% METHODS CACHE-BASED --------------------------------------------------------------------
+\subsubsubsection{Klasse: Cache-based}
+% ----------------------------------------------------------------------------------------
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------------------
+\paragraph{\underline{Methode: Web cache}} \mbox{} \vspace{2mm} \\
+ \subparagraph{Embedded identifiers in cached documents} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Performance tests} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{ETags and Last-Modified headers} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: DNS cache}} \mbox{} \vspace{2mm} \\
+lipsum
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: Operational caches}} \mbox{} \vspace{2mm} \\
+ \subparagraph{HTTP 301 redirect cache} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{HTTP authentication cache} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent 
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\ 
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{HTTP Strict Transport Security cache} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{TLS Session Resumption cache and TLS Session IDs} 
+% main src "A survey on \gls{webtracking}"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\newpage
+% METHODS FINGERPRINTING -----------------------------------------------------------------
+% -------------------------------------------------------------
+\paragraph{\underline{Methode: FavIcon cache}} \mbox{} \vspace{2mm} \\
+% main src "Tales of favicons and cache"
+\noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+\vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+
+
+% -------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------
+% STATELESS TRACKING
+% ----------------------------------------------------------------------------------------
+\subsubsection{Stateless Tracking}
+lipsum
+\vfill\null \columnbreak
+\subsubsubsection{Klasse: Beacons}
+\paragraph{\underline{Methode: Beacons}} \mbox{} \vspace{2mm} \\
+ \subparagraph{Tracking Pixels} 
+\subsubsubsection{Klasse: Fingerprinting}
+ \subparagraph{Netzwerk- und Standort-Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Geräte-Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Betriebssystem-Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Browser Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+% -------------------------------------------------------------------------
+\subsubsubsection{Klasse: Injection}
+% -------------------------------------------------------------------------
+\subsubsubsection{Klasse: Privilege Escalation}
+% -------------------------------------------------------------------------
+
+
+ \subparagraph{Canvas-Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Browserverlauf-basiertes Fingerprinting} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Andere Browser Fingerprinting-Verfahren} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\newpage
+% METHODS OTHERS -------------------------------------------------------------------------
+\subsubsubsection{Klasse: Injektion}
+\subsubsubsection{Klasse: Privilege escalation}
+\paragraph{\underline{Methode: Clickjacking}} \mbox{} \vspace{2mm} \\ 
+ \subparagraph{Sammeln von Personendaten} 
+ \subparagraph{Nutzung von Gerätefeatures} 
+\paragraph{\underline{Methode: Unconcious user collaboration}} \mbox{} \vspace{2mm} \\
+ \subparagraph{CAPTCHA} 
+ \subparagraph{LCD-like characters} 
+ \subparagraph{Game-based technique} 
+ \subparagraph{Image puzzle} 
+
+% - below old
+ \subparagraph{An ausgehende HTTP-Requests angehängte Headers} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Metadaten des Mobiltelefons} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+% -------------------------------------------------------------
+ \subparagraph{Timing-Attacken} 
+% main src "A survey on \gls{webtracking}"
+\textbf{Scopes} \quad (\textbf{zeitl.}) \texttt{lipsum} \\ \null \qquad \qquad (\textbf{räuml.}) \texttt{lipsum} \\ 
+\\ \noindent \textbf{Beschreibung} \\ \noindent
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Verbreitung} \\
+lipsum
+ \vspace{3mm} \\ \noindent \textbf{Tracking} \\
+lipsum
+\vfill\null \columnbreak
+
+% ------------------------------------------------------------------
+%\subsection{Webtracking: Methoden}
+%\newpage
+% ------------------------------------------------------------------
+%\subsection{Webtracking: Gegenmassnahmen}
+%\newpage
+% ------------------------------------------------------------------
+%\subsection{Webtracking: Compliance}
+%\newpage
+\subsection{Gegenmassnahmen}
+\subsubsection{Browser-Plugins}
+\subsubsection{Browser-Extensions}
+\subsubsection{Privacy-orientierte Browser}
+\subsubsection{VPN und Proxies}
+
+\subsection{Auswirkungen der DSGVO} \label{lesezeichen_business}
+\subsubsection{DSGVO und die ePrivacy-Richtlinie}
+\subsubsection{Längsstudien}
+\subsubsection{Querschnittstudien}
+
+\end{multicols*}
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% EVALUATION AND VALIDATION
+% ------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Evaluation und Validation} \label{sec:eval_n_valid}
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% OUTLOOK
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\section{Ausblick} \label{sec:outlook}
+\label{lesezeichen_ausblick}
+% NOTES
+% mehr large-scale quantitative research
+\newpage
+
+% RECONFIGURATION OF SECTION NUMBERING
+\setcounter{section}{0}
+\renewcommand*{\thesection}{\Alph{section}}
+% reconfig of table numbering
+\setcounter{table}{0}
+\renewcommand{\thetable}{B.2.\arabic{table} }
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% TABLE OF ACRONYMS, GLOSSAR, REFERENCES, TABLES, FIGURES
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\section{Verzeichnisse} \label{sec:directories}
+% ------------------------------------------------------------------
+\begin{flushleft}
+\subsection{Abkürzungsverzeichnis}
+\printglossary[type=\acronymtype, style=mcolindex]
+\newpage
+\end{flushleft}
+% ------------------------------------------------------------------
+\subsection{Glossar}
+\printglossary[style=mcolindex]
+\newpage
+
+% ------------------------------------------------------------------
+\subsection{Tabellenverzeichnis}
+\begin{multicols*}{2}
+\end{multicols*}
+\newpage
+
+% ------------------------------------------------------------------
+\subsection{Literaturverzeichnis}
+
+\begin{multicols*}{2}
+  \printbibliography[heading=none]
+\end{multicols*}
+\newpage
+
+% ------------------------------------------------------------------------------------------------------------------------------------------
+% APPENDICES
+% ------------------------------------------------------------------------------------------------------------------------------------------
+\counterwithin{figure}{subsection}
+\section{Anhang} \label{sec:appendix}
+% ------------------------------------------------------------------
+\subsection{Abbildungen}
+\label{appendix:inetUsage}
+% ---------------------------------
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.46]{images/B_1_1.png}
+  \caption{Schätzwert Prozentsatz der Weltbevölkerung mit Internetzugang von 1997 bis 2017 \parencite[]{enwiki:1050857794}}
+  \label{appendix:IUperInhabitant}
+\end{figure}
+% ---------------------------------
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.46]{images/B_1_2.png}
+  \caption{Schätzwert länderspezifischer Prozentsatz der Bevölkerung mit Internetzugang im Jahr 2015 \parencite[]{enwiki:1050857794}}
+  \label{appendix:IUperCountry}
+\end{figure}
+\newpage
+% ---------------------------------
+
+% ---------------------------------
+\newpage
+% ------------------------------------------------------------------
+\subsection{Tabellen}
+\begin{table}[h]
+\centering
+\caption{Anzahl Suchresultate via \textit{Google Scholar}, rückblickend, in wachsenden Zeitintervallen (Stand 15.Okt 2021)}
+\label{appendix:tab-1}
+\begin{tabular}{@{\hspace{1\tabcolsep}} @{}lllll@{} @{\hspace{1\tabcolsep}}}
+\toprule
+Zeitraum & \gls{webtracking} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ + Methods\end{tabular} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ +       Countermeasures\end{tabular} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ + GDPR\end{tabular} \\ \midrule
+seit 2021 & 47'400  & 40'300  & 3'100  & 3'070  \\ \rowcolor{gray!20}
+seit 2020 & 79'800  & 59'800  & 6'340  & 6'830  \\ 
+seit 2019 & 126'000 & 84'000  & 9'240  & 9'950  \\ \rowcolor{gray!20}
+seit 2018 & 212'000 & 135'000 & 11'700 & 11'900 \\ 
+seit 2017 & 344'000 & 228'000 & 14'000 & 12'600 \\ \rowcolor{gray!20}
+seit 2016 & 658'000 & 460'000 & 16'100 & 13'200 \\ \bottomrule
+\end{tabular}
+\end{table}
+% ---------------------------------
+\begin{table}[h]
+\centering
+\caption{Anzahl Suchresultate via \textit{Google Scholar}, geordnet nach Suchbegriff und Jahr \\ (Stand 15.Okt 2021)}
+\label{appendix:tab-2}
+\begin{tabular}{@{\hspace{1\tabcolsep}} @{}lllll@{} @{\hspace{1\tabcolsep}}}
+\toprule
+Jahr & \gls{webtracking} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ + Methods \end{tabular} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ +       Countermeasures\end{tabular} & \begin{tabular}[c]{@{}l@{}}\gls{webtracking} \\ + GDPR \end{tabular} \\ \midrule
+2021 & 47'400  & 40'300  & 3'100 & 3'070    \\ \rowcolor{gray!20}
+2020 & 32'400  & 19'500  & 3'240 & 3'760    \\ 
+2019 & 46'200  & 24'200  & 2'900 & 3'120    \\ \rowcolor{gray!20}
+2018 & 86'000  & 51'000  & 2'460 & 1'950    \\
+2017 & 132'000 & 93'000  & 2'300 & 700      \\ \rowcolor{gray!20}
+2016 & 314'000 & 232'000 & 2'100 & 600      \\ \bottomrule
+\end{tabular}
+\end{table}
+% ---------------------------------
+\newpage
+\newgeometry{left=25mm, top=32mm, bottom=25mm, right=25mm}
+\begin{landscape}
+\definecolor{light-gray}{HTML}{EEEEEE}
+\definecolor{white}{HTML}{FFFFFF}
+\rowcolors{1}{white}{light-gray}
+\begin{longtable}{C{1.2cm}|L{2cm}|L{7.2cm}|L{5.4cm}|L{3.5cm}|L{2.9cm}}
+\caption{Nationale Implementationen der \textit{ePrivacy}-Richtlinie und ihre abweichenden Anforderungen. \textit{Anm.: adaptiert} \parencite{FieldfischerLLP2020}} \label{tab:long} \\
+
+\hline \rowcolor{Fuchsia}
+  \multicolumn{1}{c|}{\color{white}\textbf{Flagge}} & 
+  \multicolumn{1}{c|}{\color{white}\textbf{Staat}} &
+  \multicolumn{1}{c|}{\color{white}\textbf{Anwendbare Legislation}} & 
+  \multicolumn{1}{c|}{\color{white}\textbf{\makecell[{{p{5.4cm}}}]{\centering \textit{first party}\\ e-Marketing}}} &
+  \multicolumn{1}{c|}{\color{white}\textbf{\makecell[{{p{3.5cm}}}]{\centering \textit{third party}\\ e-Marketing}}} &
+  \multicolumn{1}{c}{\color{white}\textbf{\makecell[{{p{2.9cm}}}]{Nationale Auslegung von \enquote{in the context of a sale} bezgl. Anwendbarkeit Soft Opt-in}}} 
+  \\ \hline 
+\endfirsthead
+
+
+
+\hline \multicolumn{6}{r}{{Fortsetzung auf der nächsten Seite}} \\ \hline
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{BE}} & 
+Belgien & \makecell[l]{Article XII.13 of the Code of Economic Law. \\ Royal Decree of 4 April 2003 regulating \\ advertising by electronic mail.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: E-Mail an persönliche B2B \\ \qquad E-Mail Adresse: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{BG}} & 
+Bulgarien & \makecell[l]{Electronic Communications Act \\ (Promulgated, SG No. 41/22.05.2007, \\ last amended: SG No. 94/29.11.2019.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out  zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{DK}} & 
+Dänemark & \makecell[l]{Danish Marketing Practices Act no. 426 \\ of 3 May 2017, article 10.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{DE}} & 
+Deutschland & \makecell[l]{German Act Against Unfair Competition \\ (Gesetz gegen den unlauteren Wettbewerb - \\ UWG) as last amended 18 April 209.} & 
+\makecell[l]{ B2C: Double Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Double Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Double Opt-in. \\ B2B: Double Opt-in.} & 
+\makecell[l]{ In der Praxis ist es \\ in Deutschland un- \\ üblich den Soft \\ Opt-in zu nutzen.\\ Double Opt-\\in empfohlen.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{EE}} & 
+Estland & \makecell[l]{Electronic Communications Act.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{FI}} & 
+Finnland & \makecell[l]{Information Society Code (917/2014), \\ Chapter 24, Sections 200 \& 202.}  &
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out falls es sich auf die \\ \qquad professionelle Rolle des \\ \qquad Empfängers bezieht. \\ \qquad Ansonsten Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out falls es \\ \qquad sich auf die pro- \\ \qquad fessionelle Rolle \\ \qquad des Empfängers \\ \qquad bezieht. \\ \qquad Ansonsten Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{FR}} & 
+Frankreich & \makecell[l]{Article L34-5 of the Postal and Electronic \\ Communications Code.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{GR}} & 
+Griechenland & \makecell[l]{Article 11, paras. 1, 3 and 7 of Law \\ 3471/2006 as amended and in force today.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion nicht \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{IE}} & 
+Irland & \makecell[l]{The European Communities (Electronic \\ Communications Networks and Services) \\ (Privacy and Electronic Communications) \\ Regulations 2011.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out falls es sich auf die \\ \qquad professionelle Role des \\ \qquad Empfängers bezieht. \\ \qquad Ansonsten Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{IT}} & 
+Italien & \makecell[l]{The Italian Personal Data Protection Code \\ (Legislative Decree No. 196 of 30 June 2003) \\ as amended by Legislative Decree No. 101 of \\ 10 August 2018.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar (nur E-Mail,\\ \qquad keine SMS). \\ B2B: Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{HR}} & 
+Kroatien & \makecell[l]{Electronic Communications Act \\ (Official Gazette No. 73/2008, 90/2011, \\ 133/2012, 80/2013, 71/2014, 72/2017).} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion nicht \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{LV}} & 
+Lettland & \makecell[l]{Law on Information Society Services, \\dated 4 November 2004.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{LT}} & 
+Litauen & \makecell[l]{Law on Legal Protection of Personal Data \\ 1996. Law of Electronic Communications 2004. \\ Law on Advertising 200.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar (nur E-Mails, \\ \qquad keine SMS).} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{LU}} & 
+Luxemburg & \makecell[l]{Law of 14 August 2000 on e- commerce. \\ Law of 30 May 2005 on electronic \\ communications networks and services.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{MT}} & 
+Malta & \makecell[l]{Processing of Personal Data (Electronic \\ Communications Sector) Regulations – – \\ Subsidiary Legislation 586.01 the "Regulations".} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{NL}} & 
+Niederlande & \makecell[l]{Telecommunications Act dated 5 June 2012.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{NO}} & 
+Norwegen & \makecell[l]{The Marketing Control Act \\ dated 9 January 2009.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{AT}} & 
+Österreich & \makecell[l]{Telecommunications Act.} & 
+\makecell[l]{ B2C: Double Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Double Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ Falls Opt-in genutzt wird (statt Soft \\ Opt-in), sollte double Opt-in ange- \\wendet werden. Soft Opt-in ist nicht \\ anwendbar für Empfänger welche \\ sich auf der nationalen \enquote{Opt-out}- \\ Liste Österreichs befinden.} & 
+\makecell[l]{ B2C: Double Opt-in. \\ B2B: Double Opt-in.} & 
+\makecell[l]{ Transaktion nicht \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{PL}} & 
+Polen & \makecell[l]{The Act on e-Services (‘e-Services’). \\ Telecommunications Law (‘Telco’).} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Soft Opt-in: N/A.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{PT}} & 
+Portugal & \makecell[l]{Law 41/2004 of August 18 on processing of \\ personal data and the protection of privacy in \\ the electronic communications sector \\ (amended by Law 46/2012 of August 29) that \\ implemented Directive 2002/58 subsequently.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig \\ \qquad falls Soft Opt-in \\ \qquad anwendbar.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{RO}} & 
+Rumänien & \makecell[l]{Law No. 506/2004 on the processing of \\ personal data and the protection of privacy \\ in the electronic communications sector.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{SE}} & 
+Schweden & \makecell[l]{Marketing Practices Act \\(Sw. marknadsforingslagen (2008:486)) \\ amended 21 July 2019. The Electronic \\Communications Act (Sw. lagen om elektronisk \\kommunikation (2003:389)) amended 1 October \\ 2019.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{CH}} & 
+Schweiz & \makecell[l]{Article 3(1)(o) of the Federal Act on Unfair \\ Competition.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{SK}} & 
+Slowakei & \makecell[l]{Act on e-Commerce (22/2004 Coll.). \\Act on Electronic Communications \\(351/2011 Coll.).} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{SI}} & 
+Slowenien & \makecell[l]{Electronic Communications Act (Zakon \\ o elektronskih komunikacijah; ZEKom-1). \\Personal Data Protection Act (Zakon o varstvu \\ osebnih podatkov; ZVOP-1). \\NB: new legislation expected soon but no \\ changes in the drafts to these questions.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt- in anwendbar. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{ES}} & 
+Spanien & \makecell[l]{Law 34/2002 on information society services \\and electronic commerce (LSSI).} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{CZ}} & 
+\makecell[l]{Tschechische \\ Republik} & \makecell[l]{Act on Certain Information Society Services\\ (480/2004 Coll.).} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{HU}} & 
+Ungarn & \makecell[l]{Regulation (EU) 2016/679 of the European \\ Union and of the Council on the protection of \\ natural persons with regard to the processing \\ of personal data and on the free movement \\ of such data, and repealing Directive \\ 65/46/EC (GDPR). Act V of 2013 on the \\ Civil Code. Act CXII of 2011 on the Right of \\ Informational Self-Determination and on \\ Freedom of Information (Info Act). \\ Act XLVIII of 2008 on the Basic Requirements \\ and Certain Restrictions of Commercial \\ Advertising Activities (Advertising Act). \\ Act CVIII of 2001 on Electronic Commerce \\ and on Information Society Services \\ (E-commerce Act). Act C of 2003 on Electronic  \\ Communications.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-out.} & 
+\makecell[l]{ Soft Opt-in: N/A.} \\
+
+\makecell[{{p{1.2cm}}}]{\centering \worldflag[width=5mm]{CY}} & 
+Zypern & \makecell[l]{The Regulation of Electronic Communications\\ and Postal Services Law (Law 112(I)/ 2004),\\ as amended.} & 
+\makecell[l]{ B2C: Opt-in. \\ \qquad Opt-out zulässig falls Soft \\ \qquad Opt-in anwendbar. \\ B2B: Opt-in.} & 
+\makecell[l]{ B2C: Opt-in. \\ B2B: Opt-in.} & 
+\makecell[l]{ Transaktion \\ notwendig.} \\ 
+
+\end{longtable}
+\end{landscape}
+\restoregeometry
+\newpage
+% ------------------------------------------------------------------
+\subsection{Interviewleitfäden}
+\label{appendix:Leitfaden}
+% ---------------------------------- GEPPERT BELOW
+\begin{multicols*}{2}
+\subsubsection{Leitfaden für Andreas Geppert}
+Dies ist der Interviewleitfaden für das Interview mit Andreas Geppert.
+\begin{itemize}[leftmargin=*]
+    % ---------------
+    \item \textbf{Einstieg}
+    \begin{itemize}[leftmargin=*]
+        \item Begrüssung und Dank dafür, dass Sie sich für das Interview zur Verfügung gestellt haben.
+        \item Thema der Forschungsarbeit skizzieren.
+        \item Randbedingungen: Interviewdauer, Interviewform, nachträgliche Änderungen, Einwillungungserklärung
+    \end{itemize}
+    % ---------------
+    \item \textbf{Einstiegsfragen}
+    \begin{itemize}[leftmargin=*]
+        \item In welcher Funktion sind Sie momentan tätig und wo haben Sie in Ihrer Tätigkeit Berührungspunkte mit der DSGVO?
+        \item Was ist Ihre Motivation, sich für den Schutz der Privatssphäre aktiv einzusetzen? 
+        \item Als technischer Experte und Privacy-Verfechter, schützen Sie da Ihre Privatsphäre mit technischen Mitteln? Was verwenden Sie da und reicht dies aus? 
+    \end{itemize}
+    % ---------------
+    \item \textbf{Schlüsselfragen}
+    \begin{itemize}[leftmargin=*]
+        \item Die \textit{SwissRe}, als Rückversicherer, bearbeitet bestimmt eine Menge Daten - sind darunter auch signifikante Mengen von Personendaten oder handelt es sich mehrheitlich um Geschäftsdaten? (Prognosen für entsprechende Versicherungsfeldern)
+        \item \textit{Cookie banners} gehören mittlerweile zum Begrüssungsstandard von Webseiten, halten Sie dies für eine gelungene technische Implementation rechtlicher Rahmenbedingungen? Wissen Sie ob es da nicht andere, vielleicht befriedigerende Ansätze gegeben hätte? (Voreinstellungen + Black- \& Whitelists)
+        \item Nutzerinnen und Nutzer kriegen heute zahllose \textit{services} umsonst (insbesondere \textit{Google services}), ist es da nicht ansatzeweise angemessen, dass man den Monetarisierungmodus unterstützt?
+        \item Weit vor Inkrafttreten der \acrshort{dsgvo} im Jahr 2010 hatte Google \textit{Street View} in den grösseren Städten Deutschlands gestartet, kam dann aber schnell ins Stocken, weil heftige Bedenken - auch von Datenschützern - geäussert wurden. (Sicherung der Haustüre, Vorlieben, etc.) Nachdem 244'000 Haushalte eine Verpixelung ihrer Häuser gefordert hatten, hat Google auf Grund des Arbeitsvolumens entschieden \textit{Street View} in Deutschland nicht weiter zu aktualisieren. War dies rückblickend nicht etwas hysterisch wenn man bedenkt, dass all diese Beobachtungen auf öffentlichem Grund für jeden durchführbar sind? 
+        \item Browser kündigen zunehmend an, entweder Funktionen zur Unterdrückung des Einsatzes von \textit{third party cookies} anzubieten (e.g. Firefox) oder den Support für diese komplett einzustellen (Chrome in 2023). Könnte dies eine direkte Folge der verschlechterten UX von \textit{cookie banners} sein?
+        \item Um die Lücke der \textit{third party cookies} wieder zu füllen, unterhält Google ein öffentliches \textit{repository} mit \textit{proposals} für neue Trackingmethoden. (FLoC, Robin, Dovekey, ...) Wie bewerten Sie dieses Vorgehen? Haben Sie sich mit solchen Ansätzen auseinandergesetzt? (FLoC ist wohl der Bekannteste)
+        \item Drei Jahre nach dem Inkrafttreten der DSGVO, können Sie da ein Fazit für sich und vielleicht auch genereller für den Markt ziehen? Sind die Datensubjekte die einzigen Gewinner dieser Legislation, oder kennen Sie Unternehmen, die davon profitiert haben?
+        \item Gerät die EU durch ihren, eher restriktiven, Datenschutz nicht etwas ins Hintertreffen im Bezug auf die Trends der IT-Branche? (ML,AI,Big Data,...)
+        \item Wohin sehen Sie den Datenschutz sich auf längere Sicht hinbewegen? (Auch im Hinblick auf die hängige ePrivacy Regulation) Haben Sie diesbezüglich Hoffnungen, wohin Sie den Datenschutz gerne sich hinbewegen sehen möchten?
+        
+    \end{itemize}
+    % ---------------
+    \item \textbf{Rückblick}
+        \begin{itemize}[leftmargin=*]
+        \item Gesagtes kurz rückblickend zusammenfassen.
+        \item Erneuter Dank dafür, dass sich der Interviewpartner sich zur Verfügung gestellt und sich Zeit genommen hat. 
+    \end{itemize}
+    % ---------------
+    \item \textbf{Ausblick}
+    \begin{itemize}[leftmargin=*]
+        \item Änderungsmodalitäten
+        \item Einverständniserklärung
+        \item Verabschiedung
+    \end{itemize}
+    % ---------------
+\end{itemize}
+\newpage
+% ---------------------------------- STEIGER BELOW
+\subsubsection{Leitfaden für Martin Steiger}
+Dies ist der Interviewleitfaden für das Interview mit Martin Steiger.
+\begin{itemize}[leftmargin=*]
+    % ---------------
+    \item \textbf{Einstieg}
+    \begin{itemize}[leftmargin=*]
+        \item Begrüssung und Dank dafür, dass Sie sich für das Interview zur Verfügung gestellt haben.
+        \item Thema der Forschungsarbeit skizzieren.
+        \item Randbedingungen: Interviewdauer, Interviewform, nachträgliche Änderungen, Einwillungungserklärung
+    \end{itemize}
+    % ---------------
+    \item \textbf{Einstiegsfragen}
+    \begin{itemize}[leftmargin=*]
+        \item In welchen Funktionen sind Sie momentan tätig?
+        \item Haben Sie seit Einführung der \acrshort{dsgvo} viele damit zusammenhängende Aufträge?
+        \item Welche andere Veränderungen hat die \acrshort{dsgvo} für Sie als Anwalt mit sich gebracht?
+        \item Wohin sehen Sie den Datenschutz sich auf längere Sicht hinbewegen? (Auch im Hinblick auf die \gls{eprivacy}.)
+    \end{itemize}
+    % ---------------
+    \item \textbf{Schlüsselfragen}
+    \begin{itemize}[leftmargin=*]
+        \item Im Hinblick darauf, welche Daten als persönliche Daten gelten, scheint oft die Kategorie der Daten hinreichend um dies zu ermitteln - gerade aber bei E-Mailadressen ergeben sich da Unschärfen. Beispielsweise lässt sich aus einer geschäftlichen E-Mailadresse generell die Firma, aber auch oft der Name des Mitarbeiters extrahieren. Stehen da nicht auch die Unternehmen in der Pflicht, welche solche identifizierbaren Konten betreiben?
+        
+        \item Wie sieht es mit Netzwerkdaten wie z.B. der IP-Adresse aus? Aus Sicht eines Providers ist es anhand einer IP-Adresse und Zeitpunkt den korrespondierenden Haushalt zuzuordnen, für Unternehmen in anderen Branchen wären solche Daten ohne Zuhilfenahme externer Datensätze aber nicht möglich. Gelten hier unterschiedliche Bewertungen darüber, was persönlich ist und was nicht?  
+        
+        \item In der \acrshort{dsgvo} gilt das Prinzip des Verbots mit Erlaubnisvorbehalt - wie spielt dies mit Gesetzgebungen in Nicht-\acrshort{eu}-Staaten zusammen? (Beispiel Schweiz: Erlaubnisprinzip mit Verbotsvorbehalt)
+        
+        \item Hinsichtlich der Verschleierung von Quellcode einer Webseite durch Minifizierung und Obfuscation: technisch versierte Nutzerinnen und Nutzer sind vielleicht daran interessiert, die Angaben eines Webseitenbetreibers innerhalb des Quellcode selbst nachzuprüfen. Steht dies nicht im Widerspruch zu der in Art. 5 Abs. 1 Bst. a geforderten Transparenz? 
+        
+        \item Die französische Datenschutzbehörde (\acrshort{cnil}) hatte im Jahr 2020 Google wegen einem dreifachen Bruch des Artikels 82 des französischen Datenschutzgesetzes mit einer Busse von 100 Mio. € bestraft. 60 Mio. € mussten von Google LLC (US-Konzern) und 40 Mio. € von Google Ireland Ltd. (europäisches Hauptquartier) bezahlt werden. Wie wird bei multinationalen Konzernen abgegrenzt, welche Entität wie weit Rechenschaft gezogen wird? (für das Geschäftsjahr 2020 berichtete Google einen Umsatz von 181.69 Mia. \$)
+        
+        \item Die grösseren Browser bauen zunehmend die Unterstützung für \textit{third-party cookies} ab, oder versuchen auf andere Weisen ihre Nutzerinnen und Nutzer vor dem dadurch ermöglichten \textit{cross-site tracking} zu schützen. Glauben Sie, dass die \acrshort{dsgvo} und die \gls{eprivacy} der Auslöser für diese Entscheidungen waren?
+        
+        \item Web Beacons sind kleine, in E-Mails eingebettete Grafiken, welche beim Öffnen einer E-Mail eine Anfrage versenden, über welche sich ableiten lässt: 
+        
+        a) ob die Mail gelesen wurde,
+        
+        b) wann dies geschah, 
+        
+        c) wie oft die E-Mail geöffnet wurde, 
+        
+        d) ob sie an Dritte weitergeleitet wurde,
+        
+        e) falls d) zutrifft: an welchen Mailserver diese Weiterleitung stattfand, sowie dessen ungefährer Standort
+
+        Müssen nun kleinere Unternehmen (und Start-Ups) jegliche Dienste prüfen, welche sie verwenden, oder dürfen sie annehmen, dass der Marktführer entsprechend die regulatorischen Bedingungen umsetzt (oder seinen Kunden entsprechendes Werkzeug zur Erfüllung der Anforderungen zur Verfügung stellt)? 
+        
+        \textbf{Ja}, prüfen \textrightarrow Wie?
+        
+        \textbf{Nein} \textrightarrow Verzerrt dies nicht möglicherweise den Wettbewerb?
+
+        \item Eigentlich wäre ja vorgesehen gewesen, dass die \gls{eprivacy} zeitgleich mit der \acrshort{dsgvo} in Kraft tritt - drei Jahre später fehlt aber immer noch ein Termin für deren Inkrafttreten. Was sind da die Gründe? (Lobbying? Ist es nicht bedenklich, dass Branchen die man eigentlich regulieren möchte, so intensiv Einfluss auf die assoziierten Entscheidungsprozesse haben?) 
+        
+        \item Drei Jahre nach dem Inkrafttreten der DSGVO, können Sie da ein Fazit für sich und vielleicht auch genereller für den Markt ziehen? Sind die Datensubjekte die einzigen Gewinner dieser Legislation, oder kennen Sie Unternehmen, die davon profitiert haben? (DSGVO-Dienstleistungerbringer ausgeschlossen)
+        
+        \item Wohin sehen Sie den Datenschutz sich auf längere Sicht hinbewegen? (Auch im Hinblick auf die \gls{eprivacy}.) Haben Sie diesbezügliche Hoffnungen, wohin Sie den Datenschutz gerne sich hinbewegen sehen möchten?
+    \end{itemize}
+     % ---------------
+    \item \textbf{Rückblick}
+        \begin{itemize}[leftmargin=*]
+        \item Gesagtes kurz rückblickend zusammenfassen.
+        \item Erneuter Dank dafür, dass sich der Interviewpartner sich zur Verfügung gestellt und sich Zeit genommen hat. 
+    \end{itemize}
+    % ---------------
+    \item \textbf{Ausblick}
+    \begin{itemize}[leftmargin=*]
+        \item Änderungsmodalitäten
+        \item Einverständniserklärung
+        \item Verabschiedung
+    \end{itemize}
+    % ---------------
+\end{itemize}
+\newpage
+% ---------------------------------- DELBROUCK BELOW
+\subsubsection{Leitfaden für Thorsten Delbrouck}
+Dies ist der Interviewleitfaden für das Interview mit Thorsten Delbrouck.
+\begin{itemize}[leftmargin=*]
+    % ---------------
+    \item \textbf{Einstieg}
+    \begin{itemize}[leftmargin=*]
+        \item Begrüssung und Dank dafür, dass Sie sich für das Interview zur Verfügung gestellt haben.
+        \item Thema der Forschungsarbeit skizzieren.
+        \item Randbedingungen: Interviewdauer, Interviewform, nachträgliche Änderungen, Einwillungungserklärung
+    \end{itemize}
+    % ---------------
+    \item \textbf{Einstiegsfragen}
+    \begin{itemize}[leftmargin=*]
+        \item Erzählen Sie, welche Funktion haben Sie bei Giessecke+Devrient inne und welche Produkte bietet das Unternehmen an?
+        \item Darf man davon ausgehen, dass Giessecke+Devrient (nur schon wegen dem Notendruck) sich zu den kritischen Infrastrukturen zählen darf?
+        \item Haben Sie in Ihrer Funktion als Vize-Präsident noch Berühung mit Datenschutz- und Security-Themen?
+        \item Als Vizepräsident und ehemaliger CISO geben Sie wahrscheinlich auch privat Acht, dass nicht zu viele Daten über Sie im Internet auftauchen? Welche Massnahmen treffen Sie da?
+        \item Welche andere Veränderungen hat die \acrshort{dsgvo} für Sie als damaliger CISO der \enquote{Giessecke+Devrient}-Gruppe mit sich gebracht?
+        \item DLA Piper erstellt Statistiken zu \textit{data breaches} in der \acrshort{eu}; zu Beginn dieses Jahres war Deutschland Spitzenreiter bei den bei der \acrshort{dpa} gemeldeten \textit{data breaches}, wie erklären Sie sich das? 
+    \end{itemize}
+    % ---------------
+    \item \textbf{Schlüsselfragen}
+    \begin{itemize}[leftmargin=*]
+        \item In Anbetracht des Umstands, dass die Giessecke+Devrient Gruppe Ausweise herstellt - von welchen Arten von Ausweisen reden wir hier - o.a. arbeiten sie da mit speziellen Kategorien von Personendaten (Ethnie, Religion, Gewerkschaftszugehörigkeit, Gesundheitsdaten, ...)?
+        \item Gehe ich richtig in der Annahme, dass Giessecke+Devrient einen DPO beschäftigt? Wie gestaltet sich da die Zusammenarbeit zwischen CISO und DPO? Ein Stück weit kann man ja behaupten, dass der CISO für die Unternehmung, aber der DPO eigentlich im Dienste der Kunden arbeitet.
+        \item Hatten Sie als CISO stets den Überblick wo welche Daten liegen, welches Schutzniveau diese benötigen, wann, wie und zu welchen Zwecken diese verwendet werden und wer Zugriff hat? Wie behält man da den Überblick und war das schon, bevor die Inhalte der \acrshort{dsgvo} bekannt waren, systematisch gelöst und dokumentiert, oder mussten Sie dazu das Ihre Systeme erweitern oder gar jeden Stein umdrehen?
+        \item Mussten Sie für gewisse Daten DPIAs durchführen? Haben Sie das nur für spezielle Kategorien von Daten vorgenommen?
+        \item Der Art. 32 DSGVO verplichtet Verantwortliche und Auftragsbearbeiter geeignete technische und organisatorische Maßnahmen (kurz: TOM) zu treffen, um ein dem Risiko angemessenes Schutzniveau zu gewährleisten. Wie ermitteln Sie dieses Schutzniveau und die korrespondierenden Massnahmen, ziehen Sie da Standards wie den BSI, Iso27000-Familie, NIST oder andere zu Rate? 
+        \item Gehen solche Standards Ihrer Ansicht nach genügend ins Detail um effektiv die Massnahmen nach DSGVO zu treffen? 
+        
+        Nichtidentifizierbarkeit -- Pseudonymisierung personenbezogener Daten
+        
+        Encryption -- Verschlüsselung personenbezogener Daten
+        
+        CI -- Gewährleistung der Integrität und Vertraulichkeit der Systeme und Dienste
+        
+        A -- Gewährleistung der Verfügbarkeit und Belastbarkeit der Systeme und Dienste
+        
+        Backups -- Wiederherstellung der Verfügbarkeit personenbezogener Daten und des Zugangs zu ihnen nach einem physischen oder technischen Zwischenfall
+        
+        KVP -- Verfahren zur regelmäßigen Überprüfung, Bewertung und Evaluierung der Wirksamkeit der vorgenannten Maßnahmen) 
+        
+        \item Die DSGVO hat als rechtliches Dokument eher einen interpretierbaren Charakter - sie kennt keine Entscheidungsmatrizen oder Implementationsanweisungen - und insofern in ihrer Auslegung auch etwas von Präzedenzfällen und Expertendokumenten (bspw. der WP29 oder nationale  (in DE sind DPAs nach Bundesländern organisiert) \acrshort{dpa}) abhängig. Wie bleibt man da als Unternehmung auf dem aktuellen Stand?
+        \item Privacy by Design ist ein wichtiges Konzept in der DSGVO, aber in der Realität ist die Designphase der meisten betrieblich genutzten Applikationen, Prozesse und Infrastrukturen ja bereits vorüber - wie geht man mit solchen Altlasten um, in deren Designphilosophie Privacy eher als \textit{bolt-on}-Feature verstanden wurde (\textit{Privacy as an afterthought}). 
+        \item Gerade für kleinere Unternehmen, welche keine Informationssicherheits- und Datenschutzfachleute beschäftigen, macht es Sinn auf fertige Lösungen zurückzugreifen (\textit{Cookiebot, Transparency and Consent Framework, cookielaw*} usw.), glauben Sie, dass solche Werkzeuge genügen um Konformität sicherzustellen? Oder würden Sie externe Dienstleister mit der Implementation und Audit zu Rate ziehen? (*auf Webpräsenz von Giessecke+Devrient beobachtet)
+        \item Wie sieht es mit dem Management hinsichtlich dem von Zulieferern gebotenen Schutzniveau aus? Müssen Sie da Risiken abschätzen, oder gibt es da Zertifizierungen (deren Schaffung gemäss Art.42 DSGVO ermutigt wird) die eine gewisse Sicherheit geben? Welche Hebel zieht man da, damit man solche Informationen überhaupt kriegt?
+        \item Gemäss der DSGVO müssen Unternehmen Ihre Konformität demonstrieren können - gibt es da Anweisungen von \acrshort{dpa}s wie das zu geschehen hat, oder woher weiss man, was solch eine Demonstration genau umfasst?
+        \item Gemäss Art. 33 DSGVO müssen \textit{data breaches}, welche persönliche Daten enthalte, innerhalb von 72 Stunden nachdem diese bemerkt worden sind, gemeldet werden. Verwenden Sie da \textit{data loss prevention}- (DLP), \textit{data loss detection}-Lösungen (DLD)? Aufgrund der Formulierung der DSGVO wäre es ja möglich dies auf die lange Bank zu schieben, da die 72 Stunden Frist erst ab dem Zeitpunkt des Bemerkens gilt? 
+        \item Drei Jahre nach dem Inkrafttreten der DSGVO, können Sie da ein Fazit für sich und vielleicht auch genereller für den Markt ziehen? Sind die Datensubjekte die einzigen Gewinner dieser Legislation, oder kennen Sie Unternehmen, die davon profitiert haben? 
+        \item Wohin sehen Sie den Datenschutz sich auf längere Sicht hinbewegen? (Auch im Hinblick auf die hängige ePrivacy Regulation) Haben Sie diesbezüglich Hoffnungen, wohin Sie den Datenschutz gerne sich hinbewegen sehen möchten?
+    \end{itemize}
+    % ---------------
+    \item \textbf{Rückblick}
+        \begin{itemize}[leftmargin=*]
+        \item Gesagtes kurz rückblickend zusammenfassen.
+        \item Erneuter Dank dafür, dass sich der Interviewpartner sich zur Verfügung gestellt und sich Zeit genommen hat.
+        \item Aufnahme stoppen.
+    \end{itemize}
+    % ---------------
+    \item \textbf{Ausblick}
+    \begin{itemize}[leftmargin=*]
+        \item Änderungsmodalitäten
+        \item Einverständniserklärung
+        \item Verabschiedung
+    \end{itemize}
+    % ---------------
+\end{itemize}
+\end{multicols*}
+% ----------------------------------
+\newpage
+\subsection{DSGVO Checkliste}
+\label{lesezeichen_checklist}
+\end{document}
